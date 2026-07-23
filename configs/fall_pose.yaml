@@ -1,0 +1,18 @@
+# YOLOv8 pose dataset template.
+# Put the dataset outside git if it is large, then update "path" below.
+path: ../datasets/fall_pose
+train: images/train
+val: images/val
+test: images/test
+
+# One detection class is enough for the baseline. Fall / non-fall is decided by
+# keypoint geometry and temporal post-processing in this MVP.
+names:
+  0: person
+
+# COCO 17-keypoint layout: nose, eyes, ears, shoulders, elbows, wrists, hips,
+# knees, ankles. Label rows must be:
+# class x_center y_center width height kpt_x kpt_y visible ...
+kpt_shape: [17, 3]
+
+flip_idx: [0, 2, 1, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15]
