@@ -64,7 +64,9 @@ def main() -> None:
     cfg = load_config(config_path)
     root = Path(cfg["path"])
     if not root.is_absolute():
-        root = (config_path.parent / root).resolve()
+        config_relative = (config_path.parent / root).resolve()
+        cwd_relative = (Path.cwd() / root).resolve()
+        root = config_relative if config_relative.exists() else cwd_relative
 
     expected_keypoints = int(cfg.get("kpt_shape", [17, 3])[0])
     total_images = 0
