@@ -1,0 +1,53 @@
+{
+  "model_path": "C:\\Users\\32435\\Documents\\Codex\\2026-07-19\\new-chat-2\\work\\smoke\\tiny_conv.onnx",
+  "ir_version": 10,
+  "opsets": [
+    {
+      "domain": "ai.onnx",
+      "version": 17
+    }
+  ],
+  "parameter_count": 112,
+  "parameter_count_million": 0.0001,
+  "initializer_bytes": 448,
+  "initializer_mb": 0.0004,
+  "file_bytes": 669,
+  "file_mb": 0.0007,
+  "inputs": [
+    {
+      "name": "images",
+      "shape": [
+        1,
+        3,
+        32,
+        32
+      ],
+      "element_type": 1
+    }
+  ],
+  "outputs": [
+    {
+      "name": "features",
+      "shape": [
+        1,
+        4,
+        30,
+        30
+      ],
+      "element_type": 1
+    }
+  ],
+  "node_count": 2,
+  "operator_counts": {
+    "Conv": 1,
+    "Relu": 1
+  },
+  "hard_limit_checks": {
+    "parameters_le_20m": true,
+    "fp32_weight_le_80mb": true
+  },
+  "warnings": [
+    "算子是否可在 NPU 上运行，必须使用目标 SDK 转换日志确认。",
+    "文件大小与运行时 NPU 内存不是同一个指标。"
+  ]
+}
