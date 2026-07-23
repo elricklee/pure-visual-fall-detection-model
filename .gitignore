@@ -20,10 +20,6 @@ env/
 Thumbs.db
 .DS_Store
 
-# Model weights (large binaries, regeneratable)
-*.pt
-
-
 # Test videos
 test_video/
 
