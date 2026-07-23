@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from pathlib import Path
 
 import cv2
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from fall_detection import FallDetector, FallRuleConfig
 from fall_detection.visualization import draw_decision, draw_pose
