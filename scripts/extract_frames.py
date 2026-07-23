@@ -31,6 +31,13 @@ def parse_args() -> argparse.Namespace:
         default="frame",
         help="Output filename prefix.",
     )
+    parser.add_argument(
+        "--manifest",
+        default=None,
+        help="Path to manifest file listing processed video names (one per line). "
+             "Videos in the manifest will be skipped, and newly processed videos "
+             "will be appended.",
+    )
     return parser.parse_args()
 
 
@@ -77,6 +84,16 @@ def extract_from_video(
     return saved
 
 
+def load_manifest(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    return set(line.strip() for line in path.read_text("utf-8").splitlines() if line.strip())
+
+
+def save_manifest(path: Path, processed: set[str]) -> None:
+    path.write_text("\n".join(sorted(processed)) + "\n", "utf-8")
+
+
 def main() -> None:
     args = parse_args()
     source = Path(args.source)
@@ -86,15 +103,28 @@ def main() -> None:
     if not videos:
         raise SystemExit(f"no video files found in {source}")
 
+    manifest_path = Path(args.manifest) if args.manifest else None
+    processed: set[str] = set()
+    if manifest_path is not None:
+        processed = load_manifest(manifest_path)
+
     total = 0
     for video_path in videos:
-        total += extract_from_video(
+        if video_path.name in processed:
+            print(f"[skip] already processed: {video_path.name}")
+            continue
+        saved = extract_from_video(
             video_path=video_path,
             output_dir=output_dir,
             every_n=max(1, args.every_n),
             max_frames=args.max_frames,
             prefix=args.prefix,
         )
+        total += saved
+        if manifest_path is not None:
+            processed.add(video_path.name)
+            save_manifest(manifest_path, processed)
+
     print(f"total saved frames: {total}")
 
 
