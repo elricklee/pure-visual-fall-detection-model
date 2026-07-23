@@ -13,7 +13,7 @@ class FallRuleConfig:
     bbox_aspect_threshold: float = 1.25
     torso_horizontal_angle_threshold: float = 35.0
     shoulder_hip_gap_threshold: float = 0.22
-    fall_score_threshold: float = 0.55
+    fall_score_threshold: float = 0.70
     temporal_window: int = 5
     temporal_min_fall_votes: int = 3
 

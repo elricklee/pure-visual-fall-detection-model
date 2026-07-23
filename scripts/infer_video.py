@@ -22,6 +22,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default=None)
     parser.add_argument("--temporal-window", type=int, default=5)
     parser.add_argument("--temporal-votes", type=int, default=3)
+    parser.add_argument("--fall-score-threshold", type=float, default=0.55)
+    parser.add_argument("--bbox-aspect-threshold", type=float, default=1.25)
+    parser.add_argument("--torso-angle-threshold", type=float, default=35.0)
+    parser.add_argument("--shoulder-hip-gap-threshold", type=float, default=0.22)
     return parser.parse_args()
 
 
@@ -43,6 +47,10 @@ def main() -> None:
         FallRuleConfig(
             temporal_window=args.temporal_window,
             temporal_min_fall_votes=args.temporal_votes,
+            fall_score_threshold=args.fall_score_threshold,
+            bbox_aspect_threshold=args.bbox_aspect_threshold,
+            torso_horizontal_angle_threshold=args.torso_angle_threshold,
+            shoulder_hip_gap_threshold=args.shoulder_hip_gap_threshold,
         )
     )
 

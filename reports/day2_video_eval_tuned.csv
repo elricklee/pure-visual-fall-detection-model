@@ -1,0 +1,9 @@
+video,expected_fall,predicted_fall,outcome,frames,person_frames,raw_fall_frames,temporal_fall_frames,first_alert_frame,max_score
+datasets\fall_pose\videos\raw\urfall_adl_01_cam0.mp4,False,False,TN,150,138,0,0,,0.0
+datasets\fall_pose\videos\raw\urfall_adl_02_cam0.mp4,False,False,TN,180,144,0,0,,0.2
+datasets\fall_pose\videos\raw\urfall_adl_03_cam0.mp4,False,False,TN,180,177,0,0,,0.0
+datasets\fall_pose\videos\raw\urfall_adl_04_cam0.mp4,False,False,TN,150,150,0,0,,0.65
+datasets\fall_pose\videos\raw\urfall_fall_01_cam0.mp4,True,True,TP,160,131,33,29,132,1.0
+datasets\fall_pose\videos\raw\urfall_fall_02_cam0.mp4,True,True,TP,110,110,34,32,64,1.0
+datasets\fall_pose\videos\raw\urfall_fall_03_cam0.mp4,True,True,TP,215,213,4,3,187,0.8
+datasets\fall_pose\videos\raw\urfall_fall_04_cam0.mp4,True,True,TP,96,96,51,49,36,1.0
