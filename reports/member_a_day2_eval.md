@@ -36,6 +36,36 @@ temporal_window = 5
 temporal_min_fall_votes = 3
 ```
 
+## 算法升级
+
+在原有 5 帧投票基础上，新增姿态时序状态机：
+
+```text
+NORMAL -> SUSPECT_FALL -> FALL_CONFIRMED -> RECOVERY
+```
+
+状态机同时参考：
+
+- 单帧跌倒姿态分数
+- 连续帧下落趋势
+- 躯干角度快速变化
+- 多帧跌倒投票确认
+- 多帧正常姿态恢复
+
+相比单帧判断，状态机更适合解释“跌倒是一个连续事件”，能作为 PPT
+中的算法创新点。
+
+跌倒分数由离散规则升级为连续评分：
+
+```text
+fall_score = 0.35 * bbox_score
+           + 0.45 * torso_score
+           + 0.20 * shoulder_hip_gap_score
+```
+
+其中三个子分数均在 0 到 1 之间线性变化。`fall_score` 是可解释的风险分数，
+不是 YOLO 检测置信度，也不是经过概率校准的真实概率。
+
 ## 视频级评估
 
 使用现有 8 个视频评估：
@@ -46,10 +76,35 @@ temporal_min_fall_votes = 3
 - FN：0
 - Accuracy：1.000
 
+状态机回归评估保持上述结果。`datasets/fall_pose/videos/raw` 中另有
+10 个 `20240912_*.mp4` 本地视频，因文件名没有 fall/adl 标签，当前只做
+推理记录，不纳入准确率统计。
+
 评估文件：
 
 - `reports/day2_video_eval_tuned.json`
 - `reports/day2_video_eval_tuned.csv`
+- `reports/day2_video_eval_state_machine.json`
+- `reports/day2_video_eval_state_machine.csv`
+- `reports/day2_video_eval_state_machine_fixed.json`
+- `reports/day2_video_eval_state_machine_fixed.csv`
+
+状态机版 Demo：
+
+- `runs/demo/day2_continuous_state_machine/`
+
+显示修正：
+
+- 自动识别 UR Fall 左右双画面，只选右侧 RGB 主人形
+- 左上角独立显示 `STATE: NORMAL / SUSPECT_FALL / FALL_CONFIRMED`
+- 检测框显示连续 `fall_score`，疑似姿态标记为 `FALL_POSE`
+- 只有状态机确认后才显示红色 `FALL` 报警
+- 避免同一帧左右两个人形重复更新状态机
+
+最终连续评分评估文件：
+
+- `reports/day2_video_eval_continuous_state.json`
+- `reports/day2_video_eval_continuous_state.csv`
 
 ## Demo 产物
 

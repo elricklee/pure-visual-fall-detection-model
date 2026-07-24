@@ -4,13 +4,20 @@ import argparse
 import csv
 import json
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 import cv2
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from fall_detection import FallDetector, FallRuleConfig
+from fall_detection import (
+    FallDetector,
+    FallRuleConfig,
+    TemporalFallStateMachine,
+    TemporalStateConfig,
+)
+from fall_detection.detection_selection import select_primary_pose
 
 
 VIDEO_EXTS = {".mp4", ".avi", ".mov", ".mkv", ".webm"}
@@ -27,10 +34,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--device", default=None)
     parser.add_argument("--temporal-window", type=int, default=5)
     parser.add_argument("--temporal-votes", type=int, default=3)
-    parser.add_argument("--fall-score-threshold", type=float, default=0.55)
+    parser.add_argument("--fall-score-threshold", type=float, default=0.70)
     parser.add_argument("--bbox-aspect-threshold", type=float, default=1.25)
     parser.add_argument("--torso-angle-threshold", type=float, default=35.0)
     parser.add_argument("--shoulder-hip-gap-threshold", type=float, default=0.22)
+    parser.add_argument(
+        "--decision-mode",
+        choices=["state_machine", "vote"],
+        default="state_machine",
+    )
+    parser.add_argument(
+        "--roi",
+        choices=["auto", "full", "left", "right"],
+        default="auto",
+        help="auto uses right half for side-by-side wide videos.",
+    )
     parser.add_argument("--max-frames", type=int, default=0)
     return parser.parse_args()
 
@@ -67,6 +85,12 @@ def evaluate_video(
             shoulder_hip_gap_threshold=args.shoulder_hip_gap_threshold,
         )
     )
+    state_machine = TemporalFallStateMachine(
+        TemporalStateConfig(
+            window=args.temporal_window,
+            confirm_votes=args.temporal_votes,
+        )
+    )
 
     frame_count = 0
     person_frames = 0
@@ -89,21 +113,37 @@ def evaluate_video(
 
         if result.boxes is None or result.keypoints is None:
             detector.reset()
+            state_machine.reset()
             continue
 
         boxes = result.boxes.xyxy.cpu().numpy()
         keypoints = result.keypoints.data.cpu().numpy()
-        if len(boxes) == 0:
+        selected = select_primary_pose(
+            boxes,
+            keypoints,
+            result.orig_img.shape[1],
+            result.orig_img.shape[0],
+            args.roi,
+        )
+        if selected is None:
             detector.reset()
+            state_machine.reset()
             continue
 
         person_frames += 1
-        pairs = list(zip(boxes, keypoints))
-        pairs.sort(
-            key=lambda pair: (pair[0][2] - pair[0][0]) * (pair[0][3] - pair[0][1]),
-            reverse=True,
-        )
-        decision = detector.classify(pairs[0][1], pairs[0][0])
+        box, kpts = selected
+        decision = detector.classify(kpts, box)
+        if args.decision_mode == "state_machine":
+            state_decision = state_machine.update(
+                decision,
+                box,
+                result.orig_img.shape[0],
+            )
+            decision = replace(
+                decision,
+                temporal_is_fall=state_decision.is_fall_confirmed,
+                reason=f"{decision.reason}|{state_decision.state.value}",
+            )
         max_score = max(max_score, decision.score)
         if decision.is_fall:
             raw_fall_frames += 1
