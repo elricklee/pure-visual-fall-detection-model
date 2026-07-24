@@ -1,0 +1,108 @@
+{
+  "summary": {
+    "TP": 4,
+    "FP": 0,
+    "TN": 4,
+    "FN": 0,
+    "UNKNOWN": 0,
+    "accuracy": 1.0
+  },
+  "videos": [
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_adl_01_cam0.mp4",
+      "expected_fall": false,
+      "predicted_fall": false,
+      "outcome": "TN",
+      "frames": 150,
+      "person_frames": 138,
+      "raw_fall_frames": 0,
+      "temporal_fall_frames": 0,
+      "first_alert_frame": null,
+      "max_score": 0.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_adl_02_cam0.mp4",
+      "expected_fall": false,
+      "predicted_fall": false,
+      "outcome": "TN",
+      "frames": 180,
+      "person_frames": 144,
+      "raw_fall_frames": 0,
+      "temporal_fall_frames": 0,
+      "first_alert_frame": null,
+      "max_score": 0.2
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_adl_03_cam0.mp4",
+      "expected_fall": false,
+      "predicted_fall": false,
+      "outcome": "TN",
+      "frames": 180,
+      "person_frames": 177,
+      "raw_fall_frames": 0,
+      "temporal_fall_frames": 0,
+      "first_alert_frame": null,
+      "max_score": 0.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_adl_04_cam0.mp4",
+      "expected_fall": false,
+      "predicted_fall": false,
+      "outcome": "TN",
+      "frames": 150,
+      "person_frames": 150,
+      "raw_fall_frames": 0,
+      "temporal_fall_frames": 0,
+      "first_alert_frame": null,
+      "max_score": 0.65
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_fall_01_cam0.mp4",
+      "expected_fall": true,
+      "predicted_fall": true,
+      "outcome": "TP",
+      "frames": 160,
+      "person_frames": 131,
+      "raw_fall_frames": 33,
+      "temporal_fall_frames": 29,
+      "first_alert_frame": 132,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_fall_02_cam0.mp4",
+      "expected_fall": true,
+      "predicted_fall": true,
+      "outcome": "TP",
+      "frames": 110,
+      "person_frames": 110,
+      "raw_fall_frames": 34,
+      "temporal_fall_frames": 32,
+      "first_alert_frame": 64,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_fall_03_cam0.mp4",
+      "expected_fall": true,
+      "predicted_fall": true,
+      "outcome": "TP",
+      "frames": 215,
+      "person_frames": 213,
+      "raw_fall_frames": 4,
+      "temporal_fall_frames": 3,
+      "first_alert_frame": 187,
+      "max_score": 0.8
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\urfall_fall_04_cam0.mp4",
+      "expected_fall": true,
+      "predicted_fall": true,
+      "outcome": "TP",
+      "frames": 96,
+      "person_frames": 96,
+      "raw_fall_frames": 51,
+      "temporal_fall_frames": 49,
+      "first_alert_frame": 36,
+      "max_score": 1.0
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import unittest
 import numpy as np
 
 from fall_detection import FallDetector, FallRuleConfig
+from fall_detection.fall_logic import ramp_down, ramp_up
 
 
 def empty_pose() -> np.ndarray:
@@ -10,6 +11,12 @@ def empty_pose() -> np.ndarray:
 
 
 class FallLogicTest(unittest.TestCase):
+    def test_score_ramps_are_continuous(self) -> None:
+        self.assertAlmostEqual(ramp_up(1.525, 1.25, 1.80), 0.5)
+        self.assertAlmostEqual(ramp_down(55.0, 35.0, 75.0), 0.5)
+        self.assertEqual(ramp_up(1.25, 1.25, 1.80), 0.0)
+        self.assertEqual(ramp_down(35.0, 35.0, 75.0), 1.0)
+
     def test_horizontal_torso_and_wide_box_is_fall(self) -> None:
         pose = empty_pose()
         pose[5] = [120, 100, 0.9]

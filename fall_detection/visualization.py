@@ -51,16 +51,39 @@ def draw_decision(
     decision: FallDecision,
 ) -> None:
     x1, y1, x2, y2 = [int(v) for v in box_xyxy]
-    color = (0, 0, 255) if decision.temporal_is_fall else (0, 180, 0)
-    label = "FALL" if decision.temporal_is_fall else "NORMAL"
+    if decision.temporal_is_fall:
+        color = (0, 0, 255)
+        label = "FALL"
+    elif decision.is_fall:
+        color = (0, 165, 255)
+        label = "FALL_POSE"
+    else:
+        color = (0, 180, 0)
+        label = "NORMAL"
     cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
-    text = f"{label} score={decision.score:.2f} {decision.reason}"
+    text = f"{label} fall_score={decision.score:.2f}"
     cv2.putText(
         image,
         text,
         (x1, max(20, y1 - 8)),
         cv2.FONT_HERSHEY_SIMPLEX,
         0.55,
+        color,
+        2,
+        cv2.LINE_AA,
+    )
+
+
+def draw_status_banner(image: np.ndarray, state: str, is_alert: bool) -> None:
+    color = (0, 0, 255) if is_alert else (0, 160, 0)
+    text = f"STATE: {state}"
+    cv2.rectangle(image, (10, 10), (310, 44), (0, 0, 0), -1)
+    cv2.putText(
+        image,
+        text,
+        (20, 35),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.75,
         color,
         2,
         cv2.LINE_AA,

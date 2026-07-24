@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+
+# Build artifacts
+dist/
+build/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Local tool caches
+.matplotlib/
+Ultralytics/
+.ultralytics/
+
+# Datasets and generated artifacts
+datasets/
+runs/
+*.pt
+*.onnx
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Day 2 model handoff artifacts
+!artifacts/
+!artifacts/onnx/
+!artifacts/onnx/yolov8n_pose_384_fp32.onnx
+!artifacts/pytorch/
+!artifacts/pytorch/yolov8n-pose.pt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Test videos
+test_video/
+
+# Processing manifest (generated during extract_frames.py)
+processed.txt
