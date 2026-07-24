@@ -1,0 +1,36 @@
+﻿{
+  "model_name": "tiny_conv_smoke",
+  "model_version": "generic-npu-route-smoke",
+  "target_device": "通用端侧NPU（海思、瑞芯微等，具体型号待定）",
+  "deployment_scope": "无实体板卡的部署可行性验证",
+  "visual_only": true,
+  "supports_visible_light": true,
+  "supports_infrared": true,
+  "parameter_count": 112,
+  "fp32_weight_mb": 0.0004,
+  "end_to_end_latency_ms": 100.0,
+  "npu_memory_mb": 20.0,
+  "camera_input_min_height": 1080,
+  "algorithm_input": [
+    1,
+    3,
+    384,
+    384
+  ],
+  "evidence_type": {
+    "visual_only": "design_spec",
+    "supports_visible_light": "design_spec",
+    "supports_infrared": "design_spec",
+    "parameter_count": "measured",
+    "fp32_weight_mb": "measured",
+    "end_to_end_latency_ms": "design_target",
+    "npu_memory_mb": "design_target",
+    "camera_input_min_height": "design_spec"
+  },
+  "evidence": {
+    "model_audit": "reports/model_audit.json",
+    "benchmark": "reports/benchmark.json",
+    "npu_log": "无实体板卡，当前不提供真实NPU日志",
+    "infrared_test": "待填写红外测试记录路径"
+  }
+}

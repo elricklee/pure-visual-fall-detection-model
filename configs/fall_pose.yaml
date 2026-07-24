@@ -1,6 +1,6 @@
 # YOLOv8 pose dataset template.
 # Put the dataset outside git if it is large, then update "path" below.
-path: E:\files\visual-fall-detection\pure-visual-fall-detection-model\datasets\fall_pose
+path: datasets/fall_pose
 train: images/train
 val: images/val
 test: images/test

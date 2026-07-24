@@ -1,7 +1,11 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyo
+.pytest_cache/
 *.egg-info/
+
+# Build artifacts
 dist/
 build/
 
@@ -9,6 +13,21 @@ build/
 venv/
 .venv/
 env/
+
+# Local tool caches
+.matplotlib/
+Ultralytics/
+.ultralytics/
+
+# Datasets and generated artifacts
+datasets/
+runs/
+*.pt
+*.onnx
+*.mp4
+*.avi
+*.mov
+*.mkv
 
 # IDE
 .vscode/
@@ -24,4 +43,4 @@ Thumbs.db
 test_video/
 
 # Processing manifest (generated during extract_frames.py)
-# processed.txt is local state, not source code
+processed.txt

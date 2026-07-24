@@ -1,46 +1,83 @@
-# Pure Visual Fall Detection Model
+# 组员乙 Day 1：端侧部署与评测工具包
 
-面向低算力端侧设备的纯视觉跌倒检测 MVP。Day1 基线采用 `YOLOv8n-pose`
-做人形关键点检测，再用轻量姿态几何规则和短时序平滑输出跌倒告警。
+本目录覆盖分工方案中组员乙第 1 天的核心任务：
 
-## Day1 目标
+- 部署环境自检；
+- ONNX Runtime 基准测速；
+- 模型参数量、权重大小和算子审计；
+- 推理耗时与进程内存统计；
+- 无实体板卡条件下的通用NPU部署可行性分析；
+- 赛题硬性指标自动校验；
+- 给组员甲、丙的接口和交接清单。
 
-组员甲主攻：
+## 目录
 
-1. 搭建 PyTorch + Ultralytics 训练环境。
-2. 部署 `YOLOv8n-pose` 基线模型。
-3. 完成人体关键点到跌倒姿态判断的基础逻辑。
-4. 提供首轮预训练入口和视频推理 Demo。
-
-交叉协助：
-
-1. 用数据集校验脚本检查抽帧和标注结构。
-2. 输出 Day1 文档框架，方便 PPT 和答辩材料同步。
+```text
+member_b_day1_toolkit/
+├─ configs/
+│  └─ compliance.example.json
+├─ docs/
+│  ├─ DAY1_HANDOFF.md
+│  └─ ENVIRONMENT_SETUP.md
+├─ tools/
+│  ├─ benchmark_onnx.py
+│  ├─ analyze_npu_feasibility.py
+│  ├─ check_compliance.py
+│  ├─ check_environment.py
+│  └─ inspect_onnx.py
+├─ tests/
+│  └─ test_tools.py
+└─ requirements-benchmark.txt
+```
 
 ## 快速开始
+
+建议使用 Python 3.10 或 3.11 创建独立环境。
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+python -m pip install -r requirements-benchmark.txt
 ```
 
-训练基线模型：
+先检查环境：
 
 ```powershell
-python scripts\train_pose_baseline.py --data configs\fall_pose.yaml --epochs 50 --imgsz 640
+python tools/check_environment.py --output reports/environment.json
 ```
 
-检查数据集目录和 YOLO pose 标注：
+拿到组员甲导出的 ONNX 模型后：
 
 ```powershell
-python scripts\validate_dataset.py --data configs\fall_pose.yaml
+python tools/inspect_onnx.py models/fall_detector.onnx `
+  --output reports/model_audit.json
+
+python tools/benchmark_onnx.py models/fall_detector.onnx `
+  --warmup 20 `
+  --runs 100 `
+  --output reports/benchmark.json
+
+python tools/analyze_npu_feasibility.py reports/model_audit.json `
+  --benchmark reports/benchmark.json `
+  --output reports/npu_feasibility.json
 ```
 
-视频推理：
+把模型审计结果、测速结果及实测 NPU 数据填入一份指标文件后执行：
 
 ```powershell
-python scripts\infer_video.py --source path\to\demo.mp4 --output runs\demo_fall.mp4
+Copy-Item configs/compliance.example.json reports/compliance.json
+python tools/check_compliance.py reports/compliance.json `
+  --output reports/compliance_report.json
 ```
 
-更多 Day1 分步说明见 [docs/day1_member_a.md](docs/day1_member_a.md)。
+返回码说明：
+
+- `0`：全部硬性指标均有实测证据并通过；
+- `2`：存在超标项或缺失项；
+- `3`：方案目标满足要求，但NPU延迟或内存尚未上板验证。
+
+## 当前边界
+
+ONNX Runtime测得的是当前计算机上的模型推理耗时和进程RSS，不能替代真实
+NPU的耗时及NPU内存数据。当前初赛路线不要求团队拥有实体板卡，因此工具会将
+相关指标标记为“设计目标、未验证”，不会伪装成实测通过。
