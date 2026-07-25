@@ -1,6 +1,7 @@
 """Core helpers for the pure-visual fall detection MVP."""
 
 from .fall_logic import FallDecision, FallDetector, FallRuleConfig
+from .image_utils import ensure_3_channels, resize_keep_aspect, to_infrared
 from .state_machine import FallState, TemporalFallStateMachine, TemporalStateConfig
 
 __all__ = [
@@ -10,4 +11,7 @@ __all__ = [
     "FallState",
     "TemporalFallStateMachine",
     "TemporalStateConfig",
+    "ensure_3_channels",
+    "resize_keep_aspect",
+    "to_infrared",
 ]

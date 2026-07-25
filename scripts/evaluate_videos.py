@@ -18,6 +18,7 @@ from fall_detection import (
     TemporalStateConfig,
 )
 from fall_detection.detection_selection import select_primary_pose
+from fall_detection.image_utils import to_infrared
 
 
 VIDEO_EXTS = {".mp4", ".avi", ".mov", ".mkv", ".webm"}
@@ -50,6 +51,11 @@ def parse_args() -> argparse.Namespace:
         help="auto uses right half for side-by-side wide videos.",
     )
     parser.add_argument("--max-frames", type=int, default=0)
+    parser.add_argument(
+        "--infrared",
+        action="store_true",
+        help="Treat input as infrared (convert to grayscale, replicate to 3 channels).",
+    )
     return parser.parse_args()
 
 
@@ -68,6 +74,55 @@ def iter_videos(source: Path) -> list[Path]:
     return sorted(
         p for p in source.rglob("*") if p.is_file() and p.suffix.lower() in VIDEO_EXTS
     )
+
+
+def process_frame_for_eval(
+    result,
+    h,
+    w,
+    roi,
+    detector,
+    state_machine,
+    args,
+    max_score: float,
+    raw_fall_frames: int,
+    temporal_fall_frames: int,
+    first_alert_frame: int | None,
+    frame_count: int,
+) -> tuple[int, int, int, int | None, float]:
+    if result.boxes is None or result.keypoints is None:
+        detector.reset()
+        state_machine.reset()
+        return 0, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+    boxes = result.boxes.xyxy.cpu().numpy()
+    keypoints = result.keypoints.data.cpu().numpy()
+    selected = select_primary_pose(boxes, keypoints, w, h, roi)
+
+    if selected is None:
+        detector.reset()
+        state_machine.reset()
+        return 0, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+    person_frames = 1
+    box, kpts = selected
+    decision = detector.classify(kpts, box)
+    if args.decision_mode == "state_machine":
+        state_decision = state_machine.update(decision, box, h)
+        decision = replace(
+            decision,
+            temporal_is_fall=state_decision.is_fall_confirmed,
+            reason=f"{decision.reason}|{state_decision.state.value}",
+        )
+    max_score = max(max_score, decision.score)
+    if decision.is_fall:
+        raw_fall_frames += 1
+    if decision.temporal_is_fall:
+        temporal_fall_frames += 1
+        if first_alert_frame is None:
+            first_alert_frame = frame_count
+
+    return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
 
 
 def evaluate_video(
@@ -99,58 +154,63 @@ def evaluate_video(
     first_alert_frame: int | None = None
     max_score = 0.0
 
-    for result in model.predict(
-        source=str(video_path),
-        imgsz=args.imgsz,
-        conf=args.conf,
-        device=args.device,
-        stream=True,
-        verbose=False,
-    ):
-        frame_count += 1
-        if args.max_frames > 0 and frame_count > args.max_frames:
-            break
+    if args.infrared:
+        cap = cv2.VideoCapture(str(video_path))
+        if not cap.isOpened():
+            return {
+                "video": str(video_path),
+                "expected_fall": expected_from_name(video_path),
+                "predicted_fall": None,
+                "outcome": "ERROR",
+                "frames": 0,
+                "person_frames": 0,
+                "raw_fall_frames": 0,
+                "temporal_fall_frames": 0,
+                "first_alert_frame": None,
+                "max_score": 0.0,
+                "error": "Failed to open video",
+            }
 
-        if result.boxes is None or result.keypoints is None:
-            detector.reset()
-            state_machine.reset()
-            continue
+        h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 
-        boxes = result.boxes.xyxy.cpu().numpy()
-        keypoints = result.keypoints.data.cpu().numpy()
-        selected = select_primary_pose(
-            boxes,
-            keypoints,
-            result.orig_img.shape[1],
-            result.orig_img.shape[0],
-            args.roi,
-        )
-        if selected is None:
-            detector.reset()
-            state_machine.reset()
-            continue
+        while True:
+            ret, frame = cap.read()
+            if not ret:
+                break
 
-        person_frames += 1
-        box, kpts = selected
-        decision = detector.classify(kpts, box)
-        if args.decision_mode == "state_machine":
-            state_decision = state_machine.update(
-                decision,
-                box,
-                result.orig_img.shape[0],
+            frame_count += 1
+            if args.max_frames > 0 and frame_count > args.max_frames:
+                break
+
+            infrared_frame = to_infrared(frame)
+            result = model(infrared_frame, imgsz=args.imgsz, conf=args.conf, device=args.device, verbose=False)[0]
+            pf, rf, tf, fa, ms = process_frame_for_eval(
+                result, h, w, args.roi, detector, state_machine, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
             )
-            decision = replace(
-                decision,
-                temporal_is_fall=state_decision.is_fall_confirmed,
-                reason=f"{decision.reason}|{state_decision.state.value}",
+            person_frames += pf
+            raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
+
+        cap.release()
+    else:
+        for result in model.predict(
+            source=str(video_path),
+            imgsz=args.imgsz,
+            conf=args.conf,
+            device=args.device,
+            stream=True,
+            verbose=False,
+        ):
+            frame_count += 1
+            if args.max_frames > 0 and frame_count > args.max_frames:
+                break
+
+            h, w = result.orig_img.shape[:2]
+            pf, rf, tf, fa, ms = process_frame_for_eval(
+                result, h, w, args.roi, detector, state_machine, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
             )
-        max_score = max(max_score, decision.score)
-        if decision.is_fall:
-            raw_fall_frames += 1
-        if decision.temporal_is_fall:
-            temporal_fall_frames += 1
-            if first_alert_frame is None:
-                first_alert_frame = frame_count
+            person_frames += pf
+            raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
 
     expected = expected_from_name(video_path)
     predicted = temporal_fall_frames > 0
@@ -197,7 +257,7 @@ def main() -> None:
     rows = [evaluate_video(model, video, args) for video in videos]
     summary = {
         key: sum(row["outcome"] == key for row in rows)
-        for key in ("TP", "FP", "TN", "FN", "UNKNOWN")
+        for key in ("TP", "FP", "TN", "FN", "UNKNOWN", "ERROR")
     }
     total_known = summary["TP"] + summary["FP"] + summary["TN"] + summary["FN"]
     summary["accuracy"] = (

@@ -49,6 +49,7 @@ def draw_decision(
     image: np.ndarray,
     box_xyxy: Iterable[float],
     decision: FallDecision,
+    det_conf: float = 0.0,
 ) -> None:
     x1, y1, x2, y2 = [int(v) for v in box_xyxy]
     if decision.temporal_is_fall:
@@ -61,7 +62,7 @@ def draw_decision(
         color = (0, 180, 0)
         label = "NORMAL"
     cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
-    text = f"{label} fall_score={decision.score:.2f}"
+    text = f"{label} conf={det_conf:.2f}"
     cv2.putText(
         image,
         text,
@@ -74,10 +75,10 @@ def draw_decision(
     )
 
 
-def draw_status_banner(image: np.ndarray, state: str, is_alert: bool) -> None:
+def draw_status_banner(image: np.ndarray, state: str, is_alert: bool, score: float = 0.0) -> None:
     color = (0, 0, 255) if is_alert else (0, 160, 0)
-    text = f"STATE: {state}"
-    cv2.rectangle(image, (10, 10), (310, 44), (0, 0, 0), -1)
+    text = f"STATE: {state}  conf={score:.2f}"
+    cv2.rectangle(image, (10, 10), (380, 44), (0, 0, 0), -1)
     cv2.putText(
         image,
         text,

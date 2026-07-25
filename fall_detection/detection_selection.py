@@ -12,6 +12,20 @@ def select_primary_pose(
     frame_height: int,
     roi: str = "auto",
 ) -> tuple[np.ndarray, np.ndarray] | None:
+    result = select_primary_pose_index(boxes, keypoints, frame_width, frame_height, roi)
+    if result is None:
+        return None
+    idx, box_array, keypoint_array = result
+    return box_array[idx], keypoint_array[idx]
+
+
+def select_primary_pose_index(
+    boxes: Iterable[Iterable[float]],
+    keypoints: Iterable[Iterable[Iterable[float]]],
+    frame_width: int,
+    frame_height: int,
+    roi: str = "auto",
+) -> tuple[int, np.ndarray, np.ndarray] | None:
     box_array = np.asarray(list(boxes), dtype=np.float32)
     keypoint_array = np.asarray(list(keypoints), dtype=np.float32)
     if len(box_array) == 0 or len(keypoint_array) == 0:
@@ -19,22 +33,22 @@ def select_primary_pose(
 
     selected_roi = _resolve_roi(frame_width, frame_height, roi)
     candidates = []
-    for box, kpts in zip(box_array, keypoint_array):
+    for i, (box, kpts) in enumerate(zip(box_array, keypoint_array)):
         if not _box_in_roi(box, frame_width, selected_roi):
             continue
         x1, y1, x2, y2 = [float(v) for v in box]
         area = max(0.0, x2 - x1) * max(0.0, y2 - y1)
         visible_score = float(np.sum(kpts[:, 2] > 0.25))
-        candidates.append((area, visible_score, box, kpts))
+        candidates.append((area, visible_score, i))
 
     if not candidates and selected_roi != "full":
-        return select_primary_pose(box_array, keypoint_array, frame_width, frame_height, "full")
+        return select_primary_pose_index(box_array, keypoint_array, frame_width, frame_height, "full")
     if not candidates:
         return None
 
     candidates.sort(key=lambda item: (item[0], item[1]), reverse=True)
-    _, _, box, kpts = candidates[0]
-    return box, kpts
+    _, _, best_idx = candidates[0]
+    return best_idx, box_array, keypoint_array
 
 
 def _resolve_roi(frame_width: int, frame_height: int, roi: str) -> str:
