@@ -79,11 +79,12 @@ def process_frame(
         boxes = result.boxes.xyxy.cpu().numpy()
         keypoints = result.keypoints.data.cpu().numpy()
         confs = result.boxes.conf.cpu().numpy()
-        selected_idx = select_primary_pose_index(boxes, keypoints, w, h, args.roi)
+        sel_result = select_primary_pose_index(boxes, keypoints, w, h, args.roi)
 
-        if selected_idx is not None:
-            box = boxes[selected_idx]
-            kpts = keypoints[selected_idx]
+        if sel_result is not None:
+            selected_idx = sel_result[0]
+            box = sel_result[1][selected_idx]
+            kpts = sel_result[2][selected_idx]
             det_conf = float(confs[selected_idx])
             decision = detector.classify(kpts, box)
             state_label = "VOTE"
@@ -147,48 +148,34 @@ def main() -> None:
     writer: cv2.VideoWriter | None = None
     fps = 25.0
 
-    if args.infrared:
-        cap = cv2.VideoCapture(str(args.source))
-        if not cap.isOpened():
-            raise SystemExit(f"Failed to open video source: {args.source}")
+    cap = cv2.VideoCapture(str(args.source))
+    if not cap.isOpened():
+        raise SystemExit(f"Failed to open video source: {args.source}")
 
-        fps = cap.get(cv2.CAP_PROP_FPS)
-        width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    if fps <= 0:
+        fps = 25.0
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-        fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-        writer = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
+    fourcc = cv2.VideoWriter_fourcc(*"mp4v")
+    writer = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
 
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                break
+    frame_count = 0
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        frame_count += 1
 
-            h, w = frame.shape[:2]
+        h, w = frame.shape[:2]
+        if args.infrared:
             display_frame = to_infrared(frame)
-            process_frame(frame, h, w, model, detector, state_machine, args, display_frame, writer)
+        else:
+            display_frame = frame.copy()
+        process_frame(frame, h, w, model, detector, state_machine, args, display_frame, writer)
 
-        cap.release()
-    else:
-        for result in model.predict(
-            source=args.source,
-            imgsz=args.imgsz,
-            conf=args.conf,
-            device=args.device,
-            stream=True,
-            verbose=False,
-        ):
-            frame = result.orig_img.copy()
-            h, w = frame.shape[:2]
-
-            if writer is None:
-                source_fps = getattr(result, "fps", None)
-                if isinstance(source_fps, (int, float)) and source_fps > 0:
-                    fps = float(source_fps)
-                fourcc = cv2.VideoWriter_fourcc(*"mp4v")
-                writer = cv2.VideoWriter(str(output_path), fourcc, fps, (w, h))
-
-            process_frame(frame, h, w, model, detector, state_machine, args, frame, writer)
+    cap.release()
 
     if writer is not None:
         writer.release()
