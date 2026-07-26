@@ -17,7 +17,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--opset", type=int, default=12, help="ONNX opset version.")
     parser.add_argument("--nms", action="store_true", help="Include NMS in the model.")
     parser.add_argument("--half", action="store_true", help="Export in FP16 precision.")
-    parser.add_argument("--quantize", choices=["int8", "fp16"], help="Quantization type.")
     parser.add_argument("--device", default=None, help="Device to use for export.")
     parser.add_argument("--config", help="Optional JSON config file for multiple export variants.")
     return parser.parse_args()

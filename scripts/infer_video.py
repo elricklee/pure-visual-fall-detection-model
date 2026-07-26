@@ -127,7 +127,8 @@ def main() -> None:
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    model = YOLO(args.model)
+    # Explicit task selection is required for reliable ONNX pose decoding.
+    model = YOLO(args.model, task="pose")
     detector = FallDetector(
         FallRuleConfig(
             temporal_window=args.temporal_window,

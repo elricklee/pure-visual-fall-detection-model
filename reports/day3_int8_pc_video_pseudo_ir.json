@@ -1,0 +1,133 @@
+{
+  "summary": {
+    "TP": 0,
+    "FP": 0,
+    "TN": 0,
+    "FN": 0,
+    "UNKNOWN": 10,
+    "ERROR": 0,
+    "accuracy": null
+  },
+  "videos": [
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_101331.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 54,
+      "raw_fall_frames": 7,
+      "temporal_fall_frames": 4,
+      "first_alert_frame": 50,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_101427.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 57,
+      "person_frames": 50,
+      "raw_fall_frames": 15,
+      "temporal_fall_frames": 9,
+      "first_alert_frame": 26,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_101520.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 56,
+      "raw_fall_frames": 50,
+      "temporal_fall_frames": 48,
+      "first_alert_frame": 9,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_101626.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 45,
+      "raw_fall_frames": 15,
+      "temporal_fall_frames": 8,
+      "first_alert_frame": 33,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_101723.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 53,
+      "raw_fall_frames": 14,
+      "temporal_fall_frames": 10,
+      "first_alert_frame": 42,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_101943.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 51,
+      "raw_fall_frames": 8,
+      "temporal_fall_frames": 6,
+      "first_alert_frame": 51,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_102048.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 42,
+      "raw_fall_frames": 32,
+      "temporal_fall_frames": 24,
+      "first_alert_frame": 13,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_102146.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 46,
+      "raw_fall_frames": 10,
+      "temporal_fall_frames": 6,
+      "first_alert_frame": 42,
+      "max_score": 1.0
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_102330.mp4",
+      "expected_fall": null,
+      "predicted_fall": false,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 40,
+      "raw_fall_frames": 2,
+      "temporal_fall_frames": 0,
+      "first_alert_frame": null,
+      "max_score": 0.835
+    },
+    {
+      "video": "datasets\\fall_pose\\videos\\raw\\20240912_102649.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 57,
+      "person_frames": 54,
+      "raw_fall_frames": 11,
+      "temporal_fall_frames": 5,
+      "first_alert_frame": 45,
+      "max_score": 1.0
+    }
+  ]
+}

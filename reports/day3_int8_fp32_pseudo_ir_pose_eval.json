@@ -1,0 +1,29 @@
+{
+  "model": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\artifacts\\onnx\\yolov8n_pose_384_fp32_7_26.onnx",
+  "data": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose_ir_eval\\data.yaml",
+  "task": "pose",
+  "image_size": 384,
+  "batch": 1,
+  "device": "cpu",
+  "metrics": {
+    "metrics/precision(B)": 0.9933908949330735,
+    "metrics/recall(B)": 1.0,
+    "metrics/mAP50(B)": 0.995,
+    "metrics/mAP50-95(B)": 0.8277285714285714,
+    "metrics/precision(P)": 0.9933908949330735,
+    "metrics/recall(P)": 1.0,
+    "metrics/mAP50(P)": 0.995,
+    "metrics/mAP50-95(P)": 0.3962470779220779,
+    "fitness": 1.2239756493506493
+  },
+  "speed_ms_per_image": {
+    "preprocess": 2.128918,
+    "inference": 16.511591,
+    "loss": 0.001109,
+    "postprocess": 1.623191
+  },
+  "limitations": [
+    "The local validation split contains only 11 images.",
+    "This result is a small-sample regression check, not final competition accuracy."
+  ]
+}

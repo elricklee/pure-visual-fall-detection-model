@@ -249,7 +249,9 @@ def main() -> None:
             "ultralytics is not installed. Run: pip install -r requirements.txt"
         ) from exc
 
-    model = YOLO(args.model)
+    # ONNX files do not always preserve enough metadata for Ultralytics to infer
+    # the task. This project only accepts pose models, so set it explicitly.
+    model = YOLO(args.model, task="pose")
     videos = iter_videos(Path(args.source))
     if not videos:
         raise SystemExit(f"no videos found in {args.source}")

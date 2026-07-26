@@ -29,17 +29,14 @@ runs/
 *.mov
 *.mkv
 
-<<<<<<< HEAD
-# Day 2 model handoff artifacts
+# Versioned model handoff artifacts
 !artifacts/
 !artifacts/onnx/
 !artifacts/onnx/yolov8n_pose_384_fp32.onnx
 !artifacts/onnx/yolov8n_pose_384_fp32_7_26.onnx
+!artifacts/onnx/yolov8n_pose_384_int8_qdq_pc_7_26.onnx
 !artifacts/pytorch/
 !artifacts/pytorch/yolov8n-pose.pt
-
-=======
->>>>>>> ec05b38cbbd668cca28cb081c0fc4c06ddb4bf62
 # IDE
 .vscode/
 .idea/

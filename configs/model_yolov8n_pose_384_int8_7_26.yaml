@@ -1,0 +1,61 @@
+model_name: yolov8n-pose
+model_stage: day3_int8_candidate_7_26
+task: pose
+
+artifacts:
+  fp32_source: artifacts/onnx/yolov8n_pose_384_fp32_7_26.onnx
+  int8_onnx: artifacts/onnx/yolov8n_pose_384_int8_qdq_pc_7_26.onnx
+  fp32_sha256: 8C8BA9001CD7D56BD017EA85FC11E7D19BEBCF2DFD84C3FC5DCDF49462A38E3D
+  int8_sha256: 31636F87F7654E172EE9BC4A72B5F6B4CC3875D9285D439BCE95042146B8EE1C
+
+input:
+  name: images
+  shape: [1, 3, 384, 384]
+  layout: NCHW
+  dtype: float32
+  color_order: RGB
+  resize: letterbox
+  padding_value: 114
+  scale: 0.00392156862745098
+
+output:
+  name: output0
+  shape: [1, 56, 3024]
+  dtype: float32
+  layout: BCN
+  box_channels: 4
+  class_score_channels: 1
+  keypoint_count: 17
+  keypoint_dimensions: 3
+  note: fall/normal is produced by geometry and temporal post-processing.
+
+quantization:
+  method: static
+  format: QDQ
+  calibration: MinMax
+  activation_type: QUInt8
+  weight_type: QInt8
+  per_channel_weights: true
+  quantized_operator_types: [Conv]
+  source_opset: 12
+  output_opset: 13
+  calibration_samples: 64
+  visible_samples: 24
+  pseudo_infrared_samples: 40
+  pseudo_infrared_note: grayscale-replicated visible images, not real sensor data
+
+postprocess:
+  confidence_threshold: 0.35
+  nms_iou_threshold: 0.70
+  nms_in_onnx: false
+  fall_logic: fall_detection/fall_logic.py
+  state_machine: fall_detection/state_machine.py
+  temporal_window: 5
+  temporal_min_fall_votes: 3
+
+verification:
+  onnx_checker: pass
+  cpu_execution_provider_load: pass
+  file_size_mb: 3.6931
+  npu_latency: unverified
+  npu_runtime_memory: unverified

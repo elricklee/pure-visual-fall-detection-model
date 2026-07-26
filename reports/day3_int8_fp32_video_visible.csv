@@ -1,0 +1,11 @@
+video,expected_fall,predicted_fall,outcome,frames,person_frames,raw_fall_frames,temporal_fall_frames,first_alert_frame,max_score
+datasets\fall_pose\videos\raw\20240912_101331.mp4,,True,UNKNOWN,56,56,11,9,48,1.0
+datasets\fall_pose\videos\raw\20240912_101427.mp4,,True,UNKNOWN,57,57,18,16,27,1.0
+datasets\fall_pose\videos\raw\20240912_101520.mp4,,True,UNKNOWN,56,56,50,48,9,1.0
+datasets\fall_pose\videos\raw\20240912_101626.mp4,,True,UNKNOWN,56,56,25,23,34,1.0
+datasets\fall_pose\videos\raw\20240912_101723.mp4,,True,UNKNOWN,56,56,15,13,44,1.0
+datasets\fall_pose\videos\raw\20240912_101943.mp4,,True,UNKNOWN,56,56,9,7,50,1.0
+datasets\fall_pose\videos\raw\20240912_102048.mp4,,True,UNKNOWN,56,56,42,43,14,1.0
+datasets\fall_pose\videos\raw\20240912_102146.mp4,,True,UNKNOWN,56,56,8,8,45,1.0
+datasets\fall_pose\videos\raw\20240912_102330.mp4,,True,UNKNOWN,56,42,4,2,40,0.968
+datasets\fall_pose\videos\raw\20240912_102649.mp4,,True,UNKNOWN,57,57,16,14,44,1.0
