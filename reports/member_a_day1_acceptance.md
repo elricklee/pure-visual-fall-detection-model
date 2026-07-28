@@ -109,9 +109,9 @@ ONNX Runtime可运行就认定NPU可部署。
 
 ```text
 artifacts/pytorch/yolov8n-pose.pt
-artifacts/onnx/yolov8n_pose_384_fp32.onnx
-configs/model_yolov8n_pose_384.yaml
-reports/model_export_log.txt
+artifacts/onnx/fall_pose_384_fp32.onnx
+configs/fall_pose_384_fp32.yaml
+reports/model/fp32_model_audit.json
 samples/input.jpg
 samples/expected.jpg
 ```

@@ -14,7 +14,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--image-size", type=int, default=384)
     parser.add_argument("--batch", type=int, default=1)
     parser.add_argument("--device", default="cpu")
-    parser.add_argument("--project", default="runs/day3_int8_eval")
+    parser.add_argument("--project", default="runs/int8_pose_eval")
     parser.add_argument("--name", required=True)
     parser.add_argument("--output", type=Path, required=True)
     return parser.parse_args()

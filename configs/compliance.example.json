@@ -1,6 +1,6 @@
 {
   "model_name": "fall_detector",
-  "model_version": "day1-baseline",
+  "model_version": "fill-before-check",
   "target_device": "通用端侧NPU（海思、瑞芯微等，具体型号待定）",
   "deployment_scope": "无实体板卡的部署可行性验证",
   "visual_only": true,
@@ -28,8 +28,8 @@
     "camera_input_min_height": "design_spec"
   },
   "evidence": {
-    "model_audit": "reports/model_audit.json",
-    "benchmark": "reports/benchmark.json",
+    "model_audit": "reports/model/fp32_model_audit.json",
+    "benchmark": "reports/model/fp32_cpu_benchmark_reference.json",
     "npu_log": "无实体板卡，当前不提供真实NPU日志",
     "infrared_test": "待填写红外测试记录路径"
   }

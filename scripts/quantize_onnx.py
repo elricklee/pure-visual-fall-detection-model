@@ -127,7 +127,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--report",
         type=Path,
-        default=Path("reports/day3_int8_quantization.json"),
+        default=Path("reports/model/int8_quantization.json"),
     )
     return parser.parse_args()
 

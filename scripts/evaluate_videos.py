@@ -29,8 +29,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate fall alerts on videos.")
     parser.add_argument("--source", default="datasets/fall_pose/videos/raw")
     parser.add_argument("--model", required=True)
-    parser.add_argument("--output", default="reports/day2_video_eval.json")
-    parser.add_argument("--csv-output", default="reports/day2_video_eval.csv")
+    parser.add_argument("--output", default="reports/evaluation/video_evaluation.json")
+    parser.add_argument("--csv-output", default="reports/evaluation/video_evaluation.csv")
     parser.add_argument("--conf", type=float, default=0.35)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--device", default=None)
@@ -171,6 +171,38 @@ def process_frame_for_eval(
 # ---------------------------------------------------------------------------
 
 
+def _summarize_multi_frame_metrics(
+    person_results,
+    raw_fall_frames: int,
+    temporal_fall_frames: int,
+    first_alert_frame: int | None,
+    max_score: float,
+    frame_count: int,
+) -> tuple[int, int, int, int | None, float]:
+    """Update video metrics once per frame, regardless of person count.
+
+    This keeps ``person_frames``, ``raw_fall_frames`` and
+    ``temporal_fall_frames`` comparable between single-person and
+    multi-person evaluation. A frame containing two falling people still
+    counts as one fall frame.
+    """
+    if not person_results:
+        return 0, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+    max_score = max(max_score, *(pr.decision.score for pr in person_results))
+    frame_has_raw_fall = any(pr.decision.is_fall for pr in person_results)
+    frame_has_temporal_fall = any(
+        pr.decision.temporal_is_fall for pr in person_results
+    )
+
+    raw_fall_frames += int(frame_has_raw_fall)
+    temporal_fall_frames += int(frame_has_temporal_fall)
+    if frame_has_temporal_fall and first_alert_frame is None:
+        first_alert_frame = frame_count
+
+    return 1, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+
 def process_frame_for_eval_multi(
     result,
     h,
@@ -187,12 +219,11 @@ def process_frame_for_eval_multi(
 
     "Any person confirmed fall" counts as a fall for the video.
     """
-    person_frames = 0
     tracker_mgr.set_frame(frame_count)
 
     if result.boxes is None or result.keypoints is None or len(result.boxes) == 0:
         tracker_mgr.cleanup_stale()
-        return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+        return 0, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
 
     boxes = result.boxes.xyxy.cpu().numpy()
     keypoints = result.keypoints.data.cpu().numpy()
@@ -206,8 +237,9 @@ def process_frame_for_eval_multi(
 
     if track_ids_np is None:
         tracker_mgr.cleanup_stale()
-        return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+        return 0, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
 
+    person_results = []
     for i in range(len(boxes)):
         tid = int(track_ids_np[i])
         box = boxes[i]
@@ -215,19 +247,17 @@ def process_frame_for_eval_multi(
         det_conf = float(confs[i])
 
         pr = tracker_mgr.update(tid, kpts, box, h, det_conf)
-        person_frames += 1
-
-        max_score = max(max_score, pr.decision.score)
-        if pr.decision.is_fall:
-            raw_fall_frames += 1
-        if pr.decision.temporal_is_fall:
-            temporal_fall_frames += 1
-            if first_alert_frame is None:
-                first_alert_frame = frame_count
+        person_results.append(pr)
 
     tracker_mgr.cleanup_stale()
-
-    return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+    return _summarize_multi_frame_metrics(
+        person_results,
+        raw_fall_frames,
+        temporal_fall_frames,
+        first_alert_frame,
+        max_score,
+        frame_count,
+    )
 
 
 # ---------------------------------------------------------------------------

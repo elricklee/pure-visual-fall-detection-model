@@ -13,7 +13,7 @@
 建议文件：
 
 ```text
-artifacts/onnx/yolov8n_pose_384_fp32.onnx
+artifacts/onnx/fall_pose_384_fp32.onnx
 ```
 
 最低要求：
@@ -53,7 +53,7 @@ artifacts/pytorch/yolov8n-pose.pt
 建议文件：
 
 ```text
-configs/model_yolov8n_pose_384.yaml
+configs/fall_pose_384_fp32.yaml
 ```
 
 至少填写：
@@ -96,7 +96,7 @@ postprocess:
 建议文件：
 
 ```text
-reports/model_export_log.txt
+reports/model/fp32_model_audit.json
 ```
 
 至少记录：
@@ -118,8 +118,8 @@ reports/model_export_log.txt
 建议文件：
 
 ```text
-samples/day2_input.jpg
-samples/day2_expected.jpg
+samples/reference_input.jpg
+samples/reference_output_fp32.jpg
 ```
 
 要求：
@@ -156,15 +156,15 @@ artifacts/
   pytorch/
     yolov8n-pose.pt
   onnx/
-    yolov8n_pose_384_fp32.onnx
+    fall_pose_384_fp32.onnx
 configs/
-  model_yolov8n_pose_384.yaml
+  fall_pose_384_fp32.yaml
 reports/
-  model_export_log.txt
+  model/fp32_model_audit.json
   training_status.md
 samples/
-  day2_input.jpg
-  day2_expected.jpg
+  reference_input.jpg
+  reference_output_fp32.jpg
 ```
 
 ## 4. 甲交付前自检

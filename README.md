@@ -83,7 +83,25 @@ python scripts\evaluate_videos.py `
   --multi-person
 ```
 
-评估报告包含 TP、FP、TN、FN、accuracy、每个视频的首个告警帧、最大分数和告警帧数。
+评估报告包含 TP、FP、TN、FN、accuracy、每个视频的首个告警帧、最大分数和告警帧数。多人模式中的
+`person_frames`、`raw_fall_frames` 和 `temporal_fall_frames` 均按视频帧去重统计：同一帧即使有多人，
+也只计 1 帧。
+
+## 多人功能测试素材
+
+仓库附带双视频拼接工具，可生成只用于端到端功能验证的同屏多人素材：
+
+```powershell
+python scripts\create_multi_person_fixture.py `
+  --left path\to\left.mp4 `
+  --right path\to\right.mp4 `
+  --left-roi right `
+  --right-roi right `
+  --output runs\fixtures\multi_person_composite.mp4
+```
+
+该拼接素材只能证明多人检测、ID 隔离、告警和报告链路可以运行，不能替代真实同屏多人数据的精度测试。
+同一人员持续处于 `FALL_CONFIRMED` 时只生成一次事件；恢复后再次跌倒，且满足冷却时间，才生成新事件。
 
 ## 核心模块
 

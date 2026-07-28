@@ -31,7 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("reports/day3_int8_output_comparison.json"),
+        default=Path("reports/model/int8_output_comparison.json"),
     )
     return parser.parse_args()
 

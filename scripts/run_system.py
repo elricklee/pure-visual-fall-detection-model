@@ -77,6 +77,35 @@ def _post_webhook(url: str, payload: dict) -> None:
         return
 
 
+def _post_webhook_async(url: str, payload: dict) -> threading.Thread:
+    """Send a webhook without blocking the video inference loop."""
+    thread = threading.Thread(target=_post_webhook, args=(url, payload), daemon=True)
+    thread.start()
+    return thread
+
+
+def _should_emit_fall_event(
+    track_id: int,
+    is_confirmed: bool,
+    now_sec: float,
+    last_event_t: dict[int, float],
+    active_alert_ids: set[int],
+    cooldown_seconds: float,
+) -> bool:
+    """Return True only when a track enters a new confirmed-fall incident."""
+    track_id = int(track_id)
+    if not is_confirmed:
+        active_alert_ids.discard(track_id)
+        return False
+
+    if track_id in active_alert_ids:
+        return False
+
+    active_alert_ids.add(track_id)
+    previous = float(last_event_t.get(track_id, -1e18))
+    return now_sec - previous >= max(0.0, float(cooldown_seconds))
+
+
 def _play_sound() -> None:
     try:
         import winsound
@@ -155,7 +184,9 @@ def _process_frame_multi(
     )[0]
 
     person_results = []
+    detected_person_count = 0
     if result.boxes is not None and result.keypoints is not None and len(result.boxes) > 0:
+        detected_person_count = len(result.boxes)
         boxes = result.boxes.xyxy.cpu().numpy()
         keypoints = result.keypoints.data.cpu().numpy()
         confs = result.boxes.conf.cpu().numpy()
@@ -185,6 +216,8 @@ def _process_frame_multi(
         "t_sec": round(frame_index / max(1e-6, fps), 3),
         "active_ids": tracker_mgr.active_ids,
         "person_count": len(person_results),
+        "detected_person_count": detected_person_count,
+        "untracked_detections": max(0, detected_person_count - len(person_results)),
         "detections": [
             {
                 "track_id": int(pr.track_id),
@@ -240,6 +273,9 @@ def main() -> None:
     out_video.parent.mkdir(parents=True, exist_ok=True)
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     writer = cv2.VideoWriter(str(out_video), fourcc, fps, size)
+    if not writer.isOpened():
+        cap.release()
+        raise SystemExit(f"Failed to open output video writer: {out_video}")
 
     pre_frames = max(0, int(round(args.pre_seconds * fps)))
     post_frames = max(0, int(round(args.post_seconds * fps)))
@@ -247,6 +283,8 @@ def main() -> None:
     pre_buffer = []
     pending = []
     last_event_t = {}
+    active_alert_ids: set[int] = set()
+    webhook_threads: list[threading.Thread] = []
 
     tracker_mgr = TrackerManager(
         fall_config=_build_fall_config(args),
@@ -298,12 +336,17 @@ def main() -> None:
                 pending.remove(clip)
 
         now_sec = frame_index / max(1e-6, fps)
+        active_alert_ids.intersection_update(int(tid) for tid in tracker_mgr.active_ids)
         for pr in person_results:
-            if not pr.decision.temporal_is_fall:
-                continue
             tid = int(pr.track_id)
-            prev = float(last_event_t.get(tid, -1e18))
-            if now_sec - prev < args.cooldown_seconds:
+            if not _should_emit_fall_event(
+                track_id=tid,
+                is_confirmed=bool(pr.decision.temporal_is_fall),
+                now_sec=now_sec,
+                last_event_t=last_event_t,
+                active_alert_ids=active_alert_ids,
+                cooldown_seconds=args.cooldown_seconds,
+            ):
                 continue
 
             event_count += 1
@@ -342,7 +385,7 @@ def main() -> None:
             if not args.no_popup:
                 _show_popup_async("Fall Alert", f"event={event_id} person=#{tid} score={pr.decision.score}")
             if args.webhook:
-                _post_webhook(args.webhook, alert_payload)
+                webhook_threads.append(_post_webhook_async(args.webhook, alert_payload))
 
             pre_clip = pre_buffer[-pre_frames:] if pre_frames > 0 else []
             frames = [f.copy() for f in pre_clip] + [display_frame.copy()]
@@ -375,6 +418,9 @@ def main() -> None:
             },
         )
 
+    for thread in webhook_threads:
+        thread.join(timeout=3.5)
+
     summary = {
         "run_name": run_name,
         "run_dir": str(run_dir),
@@ -385,6 +431,7 @@ def main() -> None:
         "height": height,
         "frames": int(frame_index + 1),
         "events": int(event_count),
+        "event_trigger_policy": "confirmed_state_entry_with_per_track_cooldown",
         "args": vars(args),
         "started_at": datetime.fromtimestamp(start_wall).isoformat(timespec="seconds"),
         "ended_at": datetime.fromtimestamp(time.time()).isoformat(timespec="seconds"),
