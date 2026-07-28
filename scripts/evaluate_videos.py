@@ -16,6 +16,7 @@ from fall_detection import (
     FallRuleConfig,
     TemporalFallStateMachine,
     TemporalStateConfig,
+    TrackerManager,
 )
 from fall_detection.detection_selection import select_primary_pose
 from fall_detection.image_utils import to_infrared
@@ -56,6 +57,23 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Treat input as infrared (convert to grayscale, replicate to 3 channels).",
     )
+    # Multi-person tracking options
+    parser.add_argument(
+        "--multi-person",
+        action="store_true",
+        help="Enable multi-person tracking mode using model.track().",
+    )
+    parser.add_argument(
+        "--tracker",
+        default="bytetrack.yaml",
+        help="Tracker config for multi-person mode.",
+    )
+    parser.add_argument(
+        "--stale-threshold",
+        type=int,
+        default=30,
+        help="Frames before a missing track_id is cleaned up.",
+    )
     return parser.parse_args()
 
 
@@ -74,6 +92,29 @@ def iter_videos(source: Path) -> list[Path]:
     return sorted(
         p for p in source.rglob("*") if p.is_file() and p.suffix.lower() in VIDEO_EXTS
     )
+
+
+def _build_fall_config(args: argparse.Namespace) -> FallRuleConfig:
+    return FallRuleConfig(
+        temporal_window=args.temporal_window,
+        temporal_min_fall_votes=args.temporal_votes,
+        fall_score_threshold=args.fall_score_threshold,
+        bbox_aspect_threshold=args.bbox_aspect_threshold,
+        torso_horizontal_angle_threshold=args.torso_angle_threshold,
+        shoulder_hip_gap_threshold=args.shoulder_hip_gap_threshold,
+    )
+
+
+def _build_state_config(args: argparse.Namespace) -> TemporalStateConfig:
+    return TemporalStateConfig(
+        window=args.temporal_window,
+        confirm_votes=args.temporal_votes,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Single-person evaluation
+# ---------------------------------------------------------------------------
 
 
 def process_frame_for_eval(
@@ -125,28 +166,80 @@ def process_frame_for_eval(
     return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
 
 
+# ---------------------------------------------------------------------------
+# Multi-person evaluation
+# ---------------------------------------------------------------------------
+
+
+def process_frame_for_eval_multi(
+    result,
+    h,
+    w,
+    tracker_mgr: TrackerManager,
+    args,
+    max_score: float,
+    raw_fall_frames: int,
+    temporal_fall_frames: int,
+    first_alert_frame: int | None,
+    frame_count: int,
+) -> tuple[int, int, int, int | None, float]:
+    """Process one frame for multi-person evaluation.
+
+    "Any person confirmed fall" counts as a fall for the video.
+    """
+    person_frames = 0
+    tracker_mgr.set_frame(frame_count)
+
+    if result.boxes is None or result.keypoints is None or len(result.boxes) == 0:
+        tracker_mgr.cleanup_stale()
+        return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+    boxes = result.boxes.xyxy.cpu().numpy()
+    keypoints = result.keypoints.data.cpu().numpy()
+    confs = result.boxes.conf.cpu().numpy()
+
+    track_ids = result.boxes.id
+    if track_ids is not None:
+        track_ids_np = track_ids.cpu().numpy().astype(int)
+    else:
+        track_ids_np = None
+
+    if track_ids_np is None:
+        tracker_mgr.cleanup_stale()
+        return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+    for i in range(len(boxes)):
+        tid = int(track_ids_np[i])
+        box = boxes[i]
+        kpts = keypoints[i]
+        det_conf = float(confs[i])
+
+        pr = tracker_mgr.update(tid, kpts, box, h, det_conf)
+        person_frames += 1
+
+        max_score = max(max_score, pr.decision.score)
+        if pr.decision.is_fall:
+            raw_fall_frames += 1
+        if pr.decision.temporal_is_fall:
+            temporal_fall_frames += 1
+            if first_alert_frame is None:
+                first_alert_frame = frame_count
+
+    tracker_mgr.cleanup_stale()
+
+    return person_frames, raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score
+
+
+# ---------------------------------------------------------------------------
+# Video evaluation
+# ---------------------------------------------------------------------------
+
+
 def evaluate_video(
     model,
     video_path: Path,
     args: argparse.Namespace,
 ) -> dict:
-    detector = FallDetector(
-        FallRuleConfig(
-            temporal_window=args.temporal_window,
-            temporal_min_fall_votes=args.temporal_votes,
-            fall_score_threshold=args.fall_score_threshold,
-            bbox_aspect_threshold=args.bbox_aspect_threshold,
-            torso_horizontal_angle_threshold=args.torso_angle_threshold,
-            shoulder_hip_gap_threshold=args.shoulder_hip_gap_threshold,
-        )
-    )
-    state_machine = TemporalFallStateMachine(
-        TemporalStateConfig(
-            window=args.temporal_window,
-            confirm_votes=args.temporal_votes,
-        )
-    )
-
     frame_count = 0
     person_frames = 0
     raw_fall_frames = 0
@@ -154,63 +247,143 @@ def evaluate_video(
     first_alert_frame: int | None = None
     max_score = 0.0
 
-    if args.infrared:
-        cap = cv2.VideoCapture(str(video_path))
-        if not cap.isOpened():
-            return {
-                "video": str(video_path),
-                "expected_fall": expected_from_name(video_path),
-                "predicted_fall": None,
-                "outcome": "ERROR",
-                "frames": 0,
-                "person_frames": 0,
-                "raw_fall_frames": 0,
-                "temporal_fall_frames": 0,
-                "first_alert_frame": None,
-                "max_score": 0.0,
-                "error": "Failed to open video",
-            }
+    if args.multi_person:
+        tracker_mgr = TrackerManager(
+            fall_config=_build_fall_config(args),
+            state_config=_build_state_config(args),
+            stale_threshold=args.stale_threshold,
+            use_state_machine=(args.decision_mode == "state_machine"),
+        )
 
-        h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+        if args.infrared:
+            cap = cv2.VideoCapture(str(video_path))
+            if not cap.isOpened():
+                return {
+                    "video": str(video_path),
+                    "expected_fall": expected_from_name(video_path),
+                    "predicted_fall": None,
+                    "outcome": "ERROR",
+                    "frames": 0,
+                    "person_frames": 0,
+                    "raw_fall_frames": 0,
+                    "temporal_fall_frames": 0,
+                    "first_alert_frame": None,
+                    "max_score": 0.0,
+                    "error": "Failed to open video",
+                }
 
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                break
+            h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 
-            frame_count += 1
-            if args.max_frames > 0 and frame_count > args.max_frames:
-                break
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    break
 
-            infrared_frame = to_infrared(frame)
-            result = model(infrared_frame, imgsz=args.imgsz, conf=args.conf, device=args.device, verbose=False)[0]
-            pf, rf, tf, fa, ms = process_frame_for_eval(
-                result, h, w, args.roi, detector, state_machine, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
-            )
-            person_frames += pf
-            raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
+                frame_count += 1
+                if args.max_frames > 0 and frame_count > args.max_frames:
+                    break
 
-        cap.release()
+                infrared_frame = to_infrared(frame)
+                result = model.track(
+                    infrared_frame,
+                    imgsz=args.imgsz,
+                    conf=args.conf,
+                    device=args.device,
+                    tracker=args.tracker,
+                    persist=True,
+                    verbose=False,
+                )[0]
+                pf, rf, tf, fa, ms = process_frame_for_eval_multi(
+                    result, h, w, tracker_mgr, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
+                )
+                person_frames += pf
+                raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
+
+            cap.release()
+        else:
+            for result in model.track(
+                source=str(video_path),
+                imgsz=args.imgsz,
+                conf=args.conf,
+                device=args.device,
+                tracker=args.tracker,
+                persist=True,
+                stream=True,
+                verbose=False,
+            ):
+                frame_count += 1
+                if args.max_frames > 0 and frame_count > args.max_frames:
+                    break
+
+                h, w = result.orig_img.shape[:2]
+                pf, rf, tf, fa, ms = process_frame_for_eval_multi(
+                    result, h, w, tracker_mgr, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
+                )
+                person_frames += pf
+                raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
     else:
-        for result in model.predict(
-            source=str(video_path),
-            imgsz=args.imgsz,
-            conf=args.conf,
-            device=args.device,
-            stream=True,
-            verbose=False,
-        ):
-            frame_count += 1
-            if args.max_frames > 0 and frame_count > args.max_frames:
-                break
+        # Single-person mode
+        detector = FallDetector(_build_fall_config(args))
+        state_machine = TemporalFallStateMachine(_build_state_config(args))
 
-            h, w = result.orig_img.shape[:2]
-            pf, rf, tf, fa, ms = process_frame_for_eval(
-                result, h, w, args.roi, detector, state_machine, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
-            )
-            person_frames += pf
-            raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
+        if args.infrared:
+            cap = cv2.VideoCapture(str(video_path))
+            if not cap.isOpened():
+                return {
+                    "video": str(video_path),
+                    "expected_fall": expected_from_name(video_path),
+                    "predicted_fall": None,
+                    "outcome": "ERROR",
+                    "frames": 0,
+                    "person_frames": 0,
+                    "raw_fall_frames": 0,
+                    "temporal_fall_frames": 0,
+                    "first_alert_frame": None,
+                    "max_score": 0.0,
+                    "error": "Failed to open video",
+                }
+
+            h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    break
+
+                frame_count += 1
+                if args.max_frames > 0 and frame_count > args.max_frames:
+                    break
+
+                infrared_frame = to_infrared(frame)
+                result = model(infrared_frame, imgsz=args.imgsz, conf=args.conf, device=args.device, verbose=False)[0]
+                pf, rf, tf, fa, ms = process_frame_for_eval(
+                    result, h, w, args.roi, detector, state_machine, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
+                )
+                person_frames += pf
+                raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
+
+            cap.release()
+        else:
+            for result in model.predict(
+                source=str(video_path),
+                imgsz=args.imgsz,
+                conf=args.conf,
+                device=args.device,
+                stream=True,
+                verbose=False,
+            ):
+                frame_count += 1
+                if args.max_frames > 0 and frame_count > args.max_frames:
+                    break
+
+                h, w = result.orig_img.shape[:2]
+                pf, rf, tf, fa, ms = process_frame_for_eval(
+                    result, h, w, args.roi, detector, state_machine, args, max_score, raw_fall_frames, temporal_fall_frames, first_alert_frame, frame_count
+                )
+                person_frames += pf
+                raw_fall_frames, temporal_fall_frames, first_alert_frame, max_score = rf, tf, fa, ms
 
     expected = expected_from_name(video_path)
     predicted = temporal_fall_frames > 0

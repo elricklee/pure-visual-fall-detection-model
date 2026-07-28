@@ -1,11 +1,14 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import TYPE_CHECKING, Iterable
 
 import cv2
 import numpy as np
 
 from .fall_logic import FallDecision
+
+if TYPE_CHECKING:
+    from .tracker_manager import PersonResult
 
 
 SKELETON = [
@@ -22,6 +25,22 @@ SKELETON = [
     (12, 14),
     (14, 16),
 ]
+
+# Color palette for per-person visualization (BGR).
+PERSON_COLORS = [
+    (0, 180, 0),      # green
+    (0, 165, 255),    # orange
+    (255, 0, 0),      # blue
+    (0, 255, 255),    # yellow
+    (255, 0, 255),    # magenta
+    (255, 255, 0),    # cyan
+    (128, 0, 128),    # purple
+    (0, 128, 255),    # light orange
+]
+
+
+def _person_color(track_id: int) -> tuple[int, int, int]:
+    return PERSON_COLORS[track_id % len(PERSON_COLORS)]
 
 
 def draw_pose(
@@ -89,3 +108,93 @@ def draw_status_banner(image: np.ndarray, state: str, is_alert: bool, score: flo
         2,
         cv2.LINE_AA,
     )
+
+
+# ---------------------------------------------------------------------------
+# Multi-person visualization
+# ---------------------------------------------------------------------------
+
+
+def draw_multi_decision(
+    image: np.ndarray,
+    box_xyxy: Iterable[float],
+    decision: FallDecision,
+    track_id: int,
+    det_conf: float = 0.0,
+) -> None:
+    """Draw bbox and label for one person in multi-person mode.
+
+    Fall detections always use red; normal uses a per-person color.
+    Label includes the track_id for identification.
+    """
+    x1, y1, x2, y2 = [int(v) for v in box_xyxy]
+    if decision.temporal_is_fall:
+        status_color = (0, 0, 255)
+        label = "FALL"
+    elif decision.is_fall:
+        status_color = (0, 165, 255)
+        label = "FALL_POSE"
+    else:
+        status_color = _person_color(track_id)
+        label = "Normal"
+    cv2.rectangle(image, (x1, y1), (x2, y2), status_color, 2)
+    text = f"#{track_id} {label} conf={det_conf:.2f}"
+    cv2.putText(
+        image,
+        text,
+        (x1, max(20, y1 - 8)),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.55,
+        status_color,
+        2,
+        cv2.LINE_AA,
+    )
+
+
+def draw_multi_status_banner(
+    image: np.ndarray,
+    person_results: list[PersonResult],
+    max_display: int = 8,
+) -> None:
+    """Draw a multi-row status banner showing per-person state.
+
+    Each person gets one row. Falls are highlighted in red.
+    At most *max_display* rows are shown; extras are omitted.
+    """
+    from .tracker_manager import PersonResult  # noqa: F811 (runtime import)
+
+    displayed = person_results[:max_display]
+    n_rows = max(1, len(displayed))
+    banner_height = 30 * n_rows + 10
+    cv2.rectangle(image, (10, 10), (420, 10 + banner_height), (0, 0, 0), -1)
+
+    y_offset = 35
+    if not displayed:
+        cv2.putText(
+            image,
+            "NO_PERSON",
+            (20, y_offset),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.7,
+            (128, 128, 128),
+            2,
+            cv2.LINE_AA,
+        )
+        return
+
+    for pr in displayed:
+        state_name = pr.state_decision.state.value if pr.state_decision else "VOTE"
+        is_alert = pr.decision.temporal_is_fall
+        color = (0, 0, 255) if is_alert else _person_color(pr.track_id)
+        text = f"#{pr.track_id} {state_name} conf={pr.decision.score:.2f}"
+        cv2.putText(
+            image,
+            text,
+            (20, y_offset),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.6,
+            color,
+            2,
+            cv2.LINE_AA,
+        )
+        y_offset += 30

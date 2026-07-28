@@ -14,10 +14,17 @@ from fall_detection import (
     FallRuleConfig,
     TemporalFallStateMachine,
     TemporalStateConfig,
+    TrackerManager,
 )
 from fall_detection.detection_selection import select_primary_pose_index
 from fall_detection.image_utils import to_infrared
-from fall_detection.visualization import draw_decision, draw_pose, draw_status_banner
+from fall_detection.visualization import (
+    draw_decision,
+    draw_multi_decision,
+    draw_multi_status_banner,
+    draw_pose,
+    draw_status_banner,
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -50,7 +57,47 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Treat input as infrared (convert to grayscale, replicate to 3 channels).",
     )
+    # Multi-person tracking options
+    parser.add_argument(
+        "--multi-person",
+        action="store_true",
+        help="Enable multi-person tracking mode using model.track().",
+    )
+    parser.add_argument(
+        "--tracker",
+        default="bytetrack.yaml",
+        help="Tracker config for multi-person mode (bytetrack.yaml or botsort.yaml).",
+    )
+    parser.add_argument(
+        "--stale-threshold",
+        type=int,
+        default=30,
+        help="Frames before a missing track_id is cleaned up (multi-person mode).",
+    )
     return parser.parse_args()
+
+
+def _build_fall_config(args: argparse.Namespace) -> FallRuleConfig:
+    return FallRuleConfig(
+        temporal_window=args.temporal_window,
+        temporal_min_fall_votes=args.temporal_votes,
+        fall_score_threshold=args.fall_score_threshold,
+        bbox_aspect_threshold=args.bbox_aspect_threshold,
+        torso_horizontal_angle_threshold=args.torso_angle_threshold,
+        shoulder_hip_gap_threshold=args.shoulder_hip_gap_threshold,
+    )
+
+
+def _build_state_config(args: argparse.Namespace) -> TemporalStateConfig:
+    return TemporalStateConfig(
+        window=args.temporal_window,
+        confirm_votes=args.temporal_votes,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Single-person mode (original logic, unchanged)
+# ---------------------------------------------------------------------------
 
 
 def process_frame(
@@ -82,10 +129,10 @@ def process_frame(
         sel_result = select_primary_pose_index(boxes, keypoints, w, h, args.roi)
 
         if sel_result is not None:
-            selected_idx = sel_result[0]
-            box = sel_result[1][selected_idx]
-            kpts = sel_result[2][selected_idx]
-            det_conf = float(confs[selected_idx])
+            idx, box_array, kpt_array = sel_result
+            box = box_array[idx]
+            kpts = kpt_array[idx]
+            det_conf = float(confs[idx])
             decision = detector.classify(kpts, box)
             state_label = "VOTE"
             score = decision.score
@@ -114,6 +161,86 @@ def process_frame(
     return state_label, alert, score
 
 
+# ---------------------------------------------------------------------------
+# Multi-person mode
+# ---------------------------------------------------------------------------
+
+
+def process_frame_multi(
+    frame,
+    h,
+    w,
+    model,
+    tracker_mgr: TrackerManager,
+    args,
+    frame_count: int,
+    display_frame,
+    writer,
+) -> tuple[list, bool]:
+    """Process one frame in multi-person tracking mode.
+
+    Returns (person_results, any_alert).
+    """
+    if args.infrared:
+        inference_frame = to_infrared(frame)
+    else:
+        inference_frame = frame
+
+    tracker_mgr.set_frame(frame_count)
+    result = model.track(
+        inference_frame,
+        imgsz=args.imgsz,
+        conf=args.conf,
+        device=args.device,
+        tracker=args.tracker,
+        persist=True,
+        verbose=False,
+    )[0]
+
+    person_results = []
+
+    if result.boxes is not None and result.keypoints is not None and len(result.boxes) > 0:
+        boxes = result.boxes.xyxy.cpu().numpy()
+        keypoints = result.keypoints.data.cpu().numpy()
+        confs = result.boxes.conf.cpu().numpy()
+
+        track_ids = result.boxes.id
+        if track_ids is not None:
+            track_ids_np = track_ids.cpu().numpy().astype(int)
+        else:
+            track_ids_np = None
+
+        if track_ids_np is not None:
+            for i in range(len(boxes)):
+                tid = int(track_ids_np[i])
+                box = boxes[i]
+                kpts = keypoints[i]
+                det_conf = float(confs[i])
+
+                pr = tracker_mgr.update(tid, kpts, box, h, det_conf)
+                person_results.append(pr)
+
+                draw_pose(display_frame, kpts)
+                draw_multi_decision(display_frame, box, pr.decision, tid, det_conf)
+
+    # Clean up trackers for persons who have left the frame
+    tracker_mgr.cleanup_stale()
+
+    # Draw multi-person status banner
+    draw_multi_status_banner(display_frame, person_results)
+
+    any_alert = any(pr.decision.temporal_is_fall for pr in person_results) if person_results else False
+    if writer is not None:
+        writer.write(display_frame)
+
+    return person_results, any_alert
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+
 def main() -> None:
     args = parse_args()
 
@@ -127,29 +254,13 @@ def main() -> None:
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # Explicit task selection is required for reliable ONNX pose decoding.
     model = YOLO(args.model, task="pose")
-    detector = FallDetector(
-        FallRuleConfig(
-            temporal_window=args.temporal_window,
-            temporal_min_fall_votes=args.temporal_votes,
-            fall_score_threshold=args.fall_score_threshold,
-            bbox_aspect_threshold=args.bbox_aspect_threshold,
-            torso_horizontal_angle_threshold=args.torso_angle_threshold,
-            shoulder_hip_gap_threshold=args.shoulder_hip_gap_threshold,
-        )
-    )
-    state_machine = TemporalFallStateMachine(
-        TemporalStateConfig(
-            window=args.temporal_window,
-            confirm_votes=args.temporal_votes,
-        )
-    )
 
     writer: cv2.VideoWriter | None = None
-    fps = 25.0
-
-    cap = cv2.VideoCapture(str(args.source))
+    cap_source: str | int = str(args.source)
+    if isinstance(cap_source, str) and cap_source.isdigit() and not Path(cap_source).exists():
+        cap_source = int(cap_source)
+    cap = cv2.VideoCapture(cap_source)
     if not cap.isOpened():
         raise SystemExit(f"Failed to open video source: {args.source}")
 
@@ -162,6 +273,21 @@ def main() -> None:
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     writer = cv2.VideoWriter(str(output_path), fourcc, fps, (width, height))
 
+    tracker_mgr: TrackerManager | None = None
+    detector: FallDetector | None = None
+    state_machine: TemporalFallStateMachine | None = None
+
+    if args.multi_person:
+        tracker_mgr = TrackerManager(
+            fall_config=_build_fall_config(args),
+            state_config=_build_state_config(args),
+            stale_threshold=args.stale_threshold,
+            use_state_machine=(args.decision_mode == "state_machine"),
+        )
+    else:
+        detector = FallDetector(_build_fall_config(args))
+        state_machine = TemporalFallStateMachine(_build_state_config(args))
+
     frame_count = 0
     while True:
         ret, frame = cap.read()
@@ -170,11 +296,22 @@ def main() -> None:
         frame_count += 1
 
         h, w = frame.shape[:2]
-        if args.infrared:
-            display_frame = to_infrared(frame)
-        else:
-            display_frame = frame.copy()
-        process_frame(frame, h, w, model, detector, state_machine, args, display_frame, writer)
+        display_frame = to_infrared(frame) if args.infrared else frame.copy()
+
+        if args.multi_person and tracker_mgr is not None:
+            process_frame_multi(
+                frame,
+                h,
+                w,
+                model,
+                tracker_mgr,
+                args,
+                frame_count,
+                display_frame,
+                writer,
+            )
+        elif detector is not None and state_machine is not None:
+            process_frame(frame, h, w, model, detector, state_machine, args, display_frame, writer)
 
     cap.release()
 
