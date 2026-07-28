@@ -18,6 +18,7 @@ from fall_detection import FallRuleConfig, TemporalStateConfig
 from fall_detection.image_utils import to_infrared
 from fall_detection.tracker_manager import TrackerManager
 from fall_detection.visualization import draw_multi_decision, draw_multi_status_banner, draw_pose
+from scripts.generate_run_report import generate_report
 
 
 def parse_args() -> argparse.Namespace:
@@ -45,6 +46,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--webhook", default=None, help="HTTP endpoint for POST JSON alerts.")
     parser.add_argument("--no-sound", action="store_true")
     parser.add_argument("--no-popup", action="store_true")
+    parser.add_argument("--no-report", action="store_true", help="Skip HTML report generation.")
     return parser.parse_args()
 
 
@@ -188,6 +190,7 @@ def main() -> None:
     events_jsonl = run_dir / "events.jsonl"
     out_video = run_dir / "live.mp4"
     summary_path = run_dir / "run_summary.json"
+    report_path = run_dir / "report.html"
 
     try:
         from ultralytics import YOLO
@@ -364,13 +367,18 @@ def main() -> None:
             "live_video": str(out_video),
             "events_jsonl": str(events_jsonl),
             "events_dir": str(events_dir),
+            "report_html": str(report_path),
         },
     }
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
+    if not args.no_report:
+        generate_report(run_dir, report_path)
     print(f"saved: {out_video}")
     print(f"saved: {events_jsonl}")
     print(f"saved: {summary_path}")
+    if not args.no_report:
+        print(f"saved: {report_path}")
 
 
 if __name__ == "__main__":
