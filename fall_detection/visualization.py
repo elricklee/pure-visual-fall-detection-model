@@ -81,7 +81,7 @@ def draw_decision(
         color = (0, 180, 0)
         label = "NORMAL"
     cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
-    text = f"{label} conf={det_conf:.2f}"
+    text = f"{label} det={det_conf:.2f}"
     cv2.putText(
         image,
         text,
@@ -96,7 +96,7 @@ def draw_decision(
 
 def draw_status_banner(image: np.ndarray, state: str, is_alert: bool, score: float = 0.0) -> None:
     color = (0, 0, 255) if is_alert else (0, 160, 0)
-    text = f"STATE: {state}  conf={score:.2f}"
+    text = f"STATE: {state}  score={score:.2f}"
     cv2.rectangle(image, (10, 10), (380, 44), (0, 0, 0), -1)
     cv2.putText(
         image,
@@ -138,7 +138,7 @@ def draw_multi_decision(
         status_color = _person_color(track_id)
         label = "Normal"
     cv2.rectangle(image, (x1, y1), (x2, y2), status_color, 2)
-    text = f"#{track_id} {label} conf={det_conf:.2f}"
+    text = f"#{track_id} {label} det={det_conf:.2f}"
     cv2.putText(
         image,
         text,
@@ -186,7 +186,7 @@ def draw_multi_status_banner(
         state_name = pr.state_decision.state.value if pr.state_decision else "VOTE"
         is_alert = pr.decision.temporal_is_fall
         color = (0, 0, 255) if is_alert else _person_color(pr.track_id)
-        text = f"#{pr.track_id} {state_name} conf={pr.decision.score:.2f}"
+        text = f"#{pr.track_id} {state_name} score={pr.decision.score:.2f}"
         cv2.putText(
             image,
             text,

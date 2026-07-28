@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 
 import numpy as np
 
@@ -86,6 +87,14 @@ class DrawDecisionTest(unittest.TestCase):
         draw_decision(image, [100, 100, 300, 300], decision)
         self.assertEqual(image.shape, (480, 640, 3))
 
+    def test_label_uses_det_for_detection_confidence(self) -> None:
+        image = np.zeros((480, 640, 3), dtype=np.uint8)
+        decision = make_decision(is_fall=False)
+        with patch("fall_detection.visualization.cv2.putText") as put_text:
+            draw_decision(image, [100, 100, 300, 300], decision, det_conf=0.85)
+        labels = [call.args[1] for call in put_text.call_args_list]
+        self.assertIn("NORMAL det=0.85", labels)
+
 
 class DrawStatusBannerTest(unittest.TestCase):
     def test_alert_banner(self) -> None:
@@ -103,6 +112,13 @@ class DrawStatusBannerTest(unittest.TestCase):
         image = np.zeros((480, 640, 3), dtype=np.uint8)
         draw_status_banner(image, "NORMAL", False)
         self.assertEqual(image.shape, (480, 640, 3))
+
+    def test_banner_uses_score_for_fall_score(self) -> None:
+        image = np.zeros((480, 640, 3), dtype=np.uint8)
+        with patch("fall_detection.visualization.cv2.putText") as put_text:
+            draw_status_banner(image, "FALL_CONFIRMED", True, score=1.0)
+        labels = [call.args[1] for call in put_text.call_args_list]
+        self.assertIn("STATE: FALL_CONFIRMED  score=1.00", labels)
 
 
 # ---------------------------------------------------------------------------
@@ -175,6 +191,14 @@ class DrawMultiDecisionTest(unittest.TestCase):
         self.assertTrue(np.any(image1 > 0))
         self.assertTrue(np.any(image2 > 0))
 
+    def test_multi_label_uses_det_for_detection_confidence(self) -> None:
+        image = np.zeros((480, 640, 3), dtype=np.uint8)
+        decision = make_decision(is_fall=True, temporal_is_fall=True)
+        with patch("fall_detection.visualization.cv2.putText") as put_text:
+            draw_multi_decision(image, [100, 100, 300, 300], decision, track_id=2, det_conf=0.85)
+        labels = [call.args[1] for call in put_text.call_args_list]
+        self.assertIn("#2 FALL det=0.85", labels)
+
 
 class DrawMultiStatusBannerTest(unittest.TestCase):
     def test_empty_results_show_no_person(self) -> None:
@@ -212,6 +236,14 @@ class DrawMultiStatusBannerTest(unittest.TestCase):
         results = [make_person_result(1), make_person_result(2)]
         draw_multi_status_banner(image, results)
         self.assertEqual(image.shape, (480, 640, 3))
+
+    def test_multi_banner_uses_score_for_fall_score(self) -> None:
+        image = np.zeros((480, 640, 3), dtype=np.uint8)
+        results = [make_person_result(2, score=1.0, state=FallState.FALL_CONFIRMED)]
+        with patch("fall_detection.visualization.cv2.putText") as put_text:
+            draw_multi_status_banner(image, results)
+        labels = [call.args[1] for call in put_text.call_args_list]
+        self.assertIn("#2 FALL_CONFIRMED score=1.00", labels)
 
 
 if __name__ == "__main__":
