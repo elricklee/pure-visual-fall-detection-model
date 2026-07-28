@@ -58,6 +58,31 @@ class GenerateRunReportTest(unittest.TestCase):
                 + "\n",
                 encoding="utf-8",
             )
+            (run_dir / "frames.jsonl").write_text(
+                json.dumps(
+                    {
+                        "type": "frame_trace",
+                        "frame_index": 10,
+                        "t_sec": 0.4,
+                        "active_ids": [1],
+                        "person_count": 1,
+                        "detections": [
+                            {
+                                "track_id": 1,
+                                "det_conf": 0.85,
+                                "score": 0.91,
+                                "is_fall": True,
+                                "temporal_is_fall": True,
+                                "state": "FALL_CONFIRMED",
+                                "reason": "bbox=1.00+torso=0.80",
+                                "box_xyxy": [100, 100, 300, 300],
+                            }
+                        ],
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
 
             report_path = generate_report(run_dir)
             html = report_path.read_text(encoding="utf-8")
@@ -66,6 +91,9 @@ class GenerateRunReportTest(unittest.TestCase):
             self.assertIn("demo_p1_000010", html)
             self.assertIn("events/demo_p1_000010/snapshot.jpg", html)
             self.assertIn("events/demo_p1_000010/replay.mp4", html)
+            self.assertIn("Frame Trace", html)
+            self.assertIn("frames.jsonl", html)
+            self.assertIn("#1 FALL_CONFIRMED det=0.85 score=0.91", html)
 
 
 if __name__ == "__main__":

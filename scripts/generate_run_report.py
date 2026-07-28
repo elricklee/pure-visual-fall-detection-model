@@ -40,6 +40,19 @@ def _read_events(path: Path) -> tuple[list[dict[str, Any]], dict[str, str]]:
     return alerts, clip_paths
 
 
+def _read_frame_traces(path: Path) -> list[dict[str, Any]]:
+    traces: list[dict[str, Any]] = []
+    if not path.exists():
+        return traces
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        record = json.loads(line)
+        if record.get("type") == "frame_trace":
+            traces.append(record)
+    return traces
+
+
 def _as_rel(path_value: str | None, base_dir: Path) -> str:
     if not path_value:
         return ""
@@ -90,7 +103,38 @@ def _event_card(alert: dict[str, Any], clip_paths: dict[str, str], run_dir: Path
     """
 
 
-def _render_html(summary: dict[str, Any], alerts: list[dict[str, Any]], clip_paths: dict[str, str], run_dir: Path) -> str:
+def _trace_row(trace: dict[str, Any]) -> str:
+    detections = trace.get("detections") if isinstance(trace.get("detections"), list) else []
+    detection_text = "<br>".join(
+        html.escape(
+            f"#{det.get('track_id')} {det.get('state')} det={float(det.get('det_conf', 0.0)):.2f} "
+            f"score={float(det.get('score', 0.0)):.2f}"
+        )
+        for det in detections
+        if isinstance(det, dict)
+    )
+    if not detection_text:
+        detection_text = "-"
+    active_ids = trace.get("active_ids") if isinstance(trace.get("active_ids"), list) else []
+    active_text = ", ".join(str(v) for v in active_ids) if active_ids else "-"
+    return f"""
+      <tr>
+        <td>{_fmt(trace.get("frame_index"))}</td>
+        <td>{_fmt(trace.get("t_sec"))}</td>
+        <td>{_fmt(trace.get("person_count"))}</td>
+        <td>{_fmt(active_text)}</td>
+        <td>{detection_text}</td>
+      </tr>
+    """
+
+
+def _render_html(
+    summary: dict[str, Any],
+    alerts: list[dict[str, Any]],
+    clip_paths: dict[str, str],
+    traces: list[dict[str, Any]],
+    run_dir: Path,
+) -> str:
     artifacts = summary.get("artifacts") if isinstance(summary.get("artifacts"), dict) else {}
     live_video = _as_rel(str(artifacts.get("live_video", "")), run_dir)
     events = int(summary.get("events") or len(alerts))
@@ -100,6 +144,10 @@ def _render_html(summary: dict[str, Any], alerts: list[dict[str, Any]], clip_pat
     event_cards = "\n".join(_event_card(alert, clip_paths, run_dir) for alert in alerts)
     if not event_cards:
         event_cards = '<section class="empty">No fall alert events were recorded in this run.</section>'
+
+    trace_rows = "\n".join(_trace_row(trace) for trace in traces[-60:])
+    if not trace_rows:
+        trace_rows = '<tr><td colspan="5">No per-frame trace file found.</td></tr>'
 
     live_html = (
         f'<video class="live-video" src="{html.escape(live_video)}" controls preload="metadata"></video>'
@@ -182,6 +230,31 @@ def _render_html(summary: dict[str, Any], alerts: list[dict[str, Any]], clip_pat
     .event-list {{
       display: grid;
       gap: 16px;
+    }}
+    .trace-box {{
+      max-height: 560px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }}
+    .trace-table {{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }}
+    .trace-table th,
+    .trace-table td {{
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }}
+    .trace-table th {{
+      position: sticky;
+      top: 0;
+      background: #f1f4f8;
+      z-index: 1;
     }}
     .event-card {{
       display: grid;
@@ -266,6 +339,26 @@ def _render_html(summary: dict[str, Any], alerts: list[dict[str, Any]], clip_pat
       <h2>Alert Events</h2>
       <div class="event-list">{event_cards}</div>
     </section>
+    <section>
+      <h2>Frame Trace</h2>
+      <p class="reason">Per-frame trace is saved to <code>frames.jsonl</code>. The table below shows the latest frames so testers can inspect track_id, det, score, and state without opening raw logs.</p>
+      <div class="trace-box">
+        <table class="trace-table">
+          <thead>
+            <tr>
+              <th>Frame</th>
+              <th>Time</th>
+              <th>People</th>
+              <th>Active IDs</th>
+              <th>Detections</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trace_rows}
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 </body>
 </html>
@@ -277,8 +370,9 @@ def generate_report(run_dir: Path, output: Path | None = None) -> Path:
     output_path = output.resolve() if output else run_dir / "report.html"
     summary = _read_json(run_dir / "run_summary.json")
     alerts, clip_paths = _read_events(run_dir / "events.jsonl")
+    traces = _read_frame_traces(run_dir / "frames.jsonl")
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(_render_html(summary, alerts, clip_paths, run_dir), encoding="utf-8")
+    output_path.write_text(_render_html(summary, alerts, clip_paths, traces, run_dir), encoding="utf-8")
     return output_path
 
 

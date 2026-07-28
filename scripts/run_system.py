@@ -139,6 +139,8 @@ def _process_frame_multi(
     args: argparse.Namespace,
     frame_height: int,
     frame_index: int,
+    fps: float,
+    trace_path: Path,
     writer,
 ) -> list:
     tracker_mgr.set_frame(frame_index)
@@ -177,6 +179,27 @@ def _process_frame_multi(
                 draw_multi_decision(display_frame, box, pr.decision, tid, det_conf)
 
     tracker_mgr.cleanup_stale()
+    frame_trace = {
+        "type": "frame_trace",
+        "frame_index": frame_index,
+        "t_sec": round(frame_index / max(1e-6, fps), 3),
+        "active_ids": tracker_mgr.active_ids,
+        "person_count": len(person_results),
+        "detections": [
+            {
+                "track_id": int(pr.track_id),
+                "det_conf": float(pr.det_conf),
+                "score": float(pr.decision.score),
+                "is_fall": bool(pr.decision.is_fall),
+                "temporal_is_fall": bool(pr.decision.temporal_is_fall),
+                "state": pr.state_decision.state.value if pr.state_decision else "VOTE",
+                "reason": pr.decision.reason,
+                "box_xyxy": [float(v) for v in pr.box_xyxy],
+            }
+            for pr in person_results
+        ],
+    }
+    _write_jsonl(trace_path, frame_trace)
     draw_multi_status_banner(display_frame, person_results)
     writer.write(display_frame)
     return person_results
@@ -188,6 +211,7 @@ def main() -> None:
     run_dir = Path(args.output_dir) / run_name
     events_dir = run_dir / "events"
     events_jsonl = run_dir / "events.jsonl"
+    trace_jsonl = run_dir / "frames.jsonl"
     out_video = run_dir / "live.mp4"
     summary_path = run_dir / "run_summary.json"
     report_path = run_dir / "report.html"
@@ -252,6 +276,8 @@ def main() -> None:
             args=args,
             frame_height=height,
             frame_index=frame_index,
+            fps=fps,
+            trace_path=trace_jsonl,
             writer=writer,
         )
 
@@ -366,6 +392,7 @@ def main() -> None:
         "artifacts": {
             "live_video": str(out_video),
             "events_jsonl": str(events_jsonl),
+            "frames_jsonl": str(trace_jsonl),
             "events_dir": str(events_dir),
             "report_html": str(report_path),
         },
@@ -376,6 +403,7 @@ def main() -> None:
         generate_report(run_dir, report_path)
     print(f"saved: {out_video}")
     print(f"saved: {events_jsonl}")
+    print(f"saved: {trace_jsonl}")
     print(f"saved: {summary_path}")
     if not args.no_report:
         print(f"saved: {report_path}")

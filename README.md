@@ -35,6 +35,7 @@ python scripts\run_system.py --source 0 --model yolov8n-pose.pt --no-popup
 - `runs/system/<run_name>/report.html`：可直接打开的成果报告
 - `runs/system/<run_name>/live.mp4`：带骨架、人员 ID 和告警状态的视频
 - `runs/system/<run_name>/events.jsonl`：每次跌倒告警事件流
+- `runs/system/<run_name>/frames.jsonl`：每帧每人的判定 trace，方便测试回看
 - `runs/system/<run_name>/events/<event_id>/snapshot.jpg`：告警截图
 - `runs/system/<run_name>/events/<event_id>/replay.mp4`：告警前后回放片段
 - `runs/system/<run_name>/run_summary.json`：本次运行参数、帧数、FPS、事件数
@@ -52,6 +53,7 @@ python scripts\generate_run_report.py --run-dir runs\system\<run_name>
 - 本次运行的事件数、帧数、FPS、分辨率和耗时
 - 标注后完整视频
 - 每个告警事件的 track_id、状态、置信分、触发帧、触发时间和规则原因
+- 每帧每个人的 det、score、state、reason 和 active track_id
 - 每个事件的截图和回放视频入口
 
 ## 单视频可视化推理
