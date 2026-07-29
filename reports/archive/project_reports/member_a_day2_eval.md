@@ -82,12 +82,12 @@ fall_score = 0.35 * bbox_score
 
 评估文件：
 
-- `reports/day2_video_eval_tuned.json`
-- `reports/day2_video_eval_tuned.csv`
-- `reports/day2_video_eval_state_machine.json`
-- `reports/day2_video_eval_state_machine.csv`
-- `reports/day2_video_eval_state_machine_fixed.json`
-- `reports/day2_video_eval_state_machine_fixed.csv`
+- `reports/archive/day2_video_eval/day2_video_eval_tuned.json`
+- `reports/archive/day2_video_eval/day2_video_eval_tuned.csv`
+- `reports/archive/day2_video_eval/day2_video_eval_state_machine.json`
+- `reports/archive/day2_video_eval/day2_video_eval_state_machine.csv`
+- `reports/archive/day2_video_eval/day2_video_eval_state_machine_fixed.json`
+- `reports/archive/day2_video_eval/day2_video_eval_state_machine_fixed.csv`
 
 状态机版 Demo：
 
@@ -103,8 +103,8 @@ fall_score = 0.35 * bbox_score
 
 最终连续评分评估文件：
 
-- `reports/day2_video_eval_continuous_state.json`
-- `reports/day2_video_eval_continuous_state.csv`
+- `reports/archive/day2_video_eval/day2_video_eval_continuous_state.json`
+- `reports/archive/day2_video_eval/day2_video_eval_continuous_state.csv`
 
 ## Demo 产物
 

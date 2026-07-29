@@ -135,7 +135,7 @@ samples/reference_output_fp32.jpg
 建议文件：
 
 ```text
-reports/training_status.md
+reports/archive/project_reports/training_status.md
 ```
 
 至少说明：
