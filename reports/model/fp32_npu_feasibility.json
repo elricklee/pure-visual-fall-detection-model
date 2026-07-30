@@ -1,5 +1,5 @@
-﻿{
-  "model_path": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\artifacts\\onnx\\fall_pose_384_fp32.onnx",
+{
+  "model_path": "artifacts\\onnx\\fall_pose_384_fp32.onnx",
   "parameter_count": 3314186,
   "parameter_count_million": 3.3142,
   "weight_storage_estimate": {
@@ -70,7 +70,7 @@
         384
       ],
       "dtype": "float32",
-      "source": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\samples\\reference_input_384.npy"
+      "source": "samples\\reference_input_384.npy"
     },
     "scope": "pc_reference_not_npu_measurement"
   }

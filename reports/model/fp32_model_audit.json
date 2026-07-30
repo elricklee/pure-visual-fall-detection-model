@@ -1,5 +1,5 @@
-﻿{
-  "model_path": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\artifacts\\onnx\\fall_pose_384_fp32.onnx",
+{
+  "model_path": "artifacts\\onnx\\fall_pose_384_fp32.onnx",
   "ir_version": 7,
   "opsets": [
     {

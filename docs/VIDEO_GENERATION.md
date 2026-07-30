@@ -6,7 +6,7 @@
 ## 1. 进入项目并激活环境
 
 ```powershell
-cd D:\huawei\pure-visual-fall-detection-model
+cd path\to\pure-visual-fall-detection-model
 .\.venv\Scripts\Activate.ps1
 ```
 
