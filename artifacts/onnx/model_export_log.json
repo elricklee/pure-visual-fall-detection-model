@@ -1,0 +1,14 @@
+[
+  {
+    "model_path": "artifacts\\onnx\\7.30_Train\\best_384_fp32.onnx",
+    "imgsz": 384,
+    "batch": 1,
+    "dynamic": false,
+    "simplify": true,
+    "opset": 12,
+    "nms": false,
+    "half": false,
+    "device": null,
+    "file_size_mb": 13.3421
+  }
+]

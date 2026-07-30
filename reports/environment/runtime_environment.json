@@ -1,7 +1,7 @@
-﻿{
+{
   "python": {
     "version": "3.13.5",
-    "executable": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.venv\\Scripts\\python.exe",
+    "executable": ".venv\\Scripts\\python.exe",
     "implementation": "CPython"
   },
   "platform": {

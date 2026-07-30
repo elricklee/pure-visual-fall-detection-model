@@ -1,7 +1,7 @@
 {
-  "reference_model": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\artifacts\\onnx\\fall_pose_384_fp32.onnx",
-  "candidate_model": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\artifacts\\onnx\\fall_pose_384_int8_qdq.onnx",
-  "validation_directory": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val",
+  "reference_model": "artifacts\\onnx\\fall_pose_384_fp32.onnx",
+  "candidate_model": "artifacts\\onnx\\fall_pose_384_int8_qdq.onnx",
+  "validation_directory": "datasets\\fall_pose\\images\\val",
   "output_shape": [
     1,
     56,
@@ -39,7 +39,7 @@
   ],
   "samples": [
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101331_000000.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101331_000000.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.6960099935531616,
       "root_mean_squared_error": 4.487232208251953,
@@ -49,7 +49,7 @@
       "candidate_top_person_score": 0.8780524730682373
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101331_000000.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101331_000000.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.709542989730835,
       "root_mean_squared_error": 4.360124588012695,
@@ -59,7 +59,7 @@
       "candidate_top_person_score": 0.8658139705657959
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101427_000005.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101427_000005.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.7087644338607788,
       "root_mean_squared_error": 4.522727966308594,
@@ -69,7 +69,7 @@
       "candidate_top_person_score": 0.9091363549232483
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101427_000005.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101427_000005.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.9168814420700073,
       "root_mean_squared_error": 4.707338333129883,
@@ -79,7 +79,7 @@
       "candidate_top_person_score": 0.9091363549232483
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101427_000040.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101427_000040.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.6002521514892578,
       "root_mean_squared_error": 3.857726812362671,
@@ -89,7 +89,7 @@
       "candidate_top_person_score": 0.8676956295967102
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101427_000040.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101427_000040.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.7307852506637573,
       "root_mean_squared_error": 4.188847541809082,
@@ -99,7 +99,7 @@
       "candidate_top_person_score": 0.7779611349105835
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000000.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000000.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.7313183546066284,
       "root_mean_squared_error": 4.5637922286987305,
@@ -109,7 +109,7 @@
       "candidate_top_person_score": 0.9130073189735413
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000000.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000000.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.871049404144287,
       "root_mean_squared_error": 4.67842435836792,
@@ -119,7 +119,7 @@
       "candidate_top_person_score": 0.6588196754455566
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000020.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000020.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.6028923988342285,
       "root_mean_squared_error": 3.9221959114074707,
@@ -129,7 +129,7 @@
       "candidate_top_person_score": 0.769662082195282
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000020.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000020.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.7446919679641724,
       "root_mean_squared_error": 4.214910507202148,
@@ -139,7 +139,7 @@
       "candidate_top_person_score": 0.7285063862800598
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000035.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000035.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.5194604396820068,
       "root_mean_squared_error": 3.6853418350219727,
@@ -149,7 +149,7 @@
       "candidate_top_person_score": 0.788528323173523
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000035.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000035.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.6422572135925293,
       "root_mean_squared_error": 3.8515419960021973,
@@ -159,7 +159,7 @@
       "candidate_top_person_score": 0.769662082195282
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000055.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000055.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.6291755437850952,
       "root_mean_squared_error": 4.1514892578125,
@@ -169,7 +169,7 @@
       "candidate_top_person_score": 0.8062382936477661
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101520_000055.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101520_000055.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.7273117303848267,
       "root_mean_squared_error": 4.267315864562988,
@@ -179,7 +179,7 @@
       "candidate_top_person_score": 0.7496470808982849
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101626_000005.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101626_000005.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.6213675737380981,
       "root_mean_squared_error": 4.349111557006836,
@@ -189,7 +189,7 @@
       "candidate_top_person_score": 0.8780524730682373
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101626_000005.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101626_000005.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.81005859375,
       "root_mean_squared_error": 4.629666328430176,
@@ -199,7 +199,7 @@
       "candidate_top_person_score": 0.8893175721168518
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101626_000030.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101626_000030.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.4769240617752075,
       "root_mean_squared_error": 3.739757537841797,
@@ -209,7 +209,7 @@
       "candidate_top_person_score": 0.8062382936477661
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101626_000030.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101626_000030.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.7593470811843872,
       "root_mean_squared_error": 4.396122932434082,
@@ -219,7 +219,7 @@
       "candidate_top_person_score": 0.5
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101723_000000.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101723_000000.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.6519355773925781,
       "root_mean_squared_error": 4.472753524780273,
@@ -229,7 +229,7 @@
       "candidate_top_person_score": 0.8780524730682373
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101723_000000.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101723_000000.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.7521296739578247,
       "root_mean_squared_error": 4.489863395690918,
@@ -239,7 +239,7 @@
       "candidate_top_person_score": 0.788528323173523
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101723_000010.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101723_000010.jpg",
       "mode": "visible",
       "mean_absolute_error": 1.662830114364624,
       "root_mean_squared_error": 4.481809139251709,
@@ -249,7 +249,7 @@
       "candidate_top_person_score": 0.9091363549232483
     },
     {
-      "image": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\val\\frame_20240912_101723_000010.jpg",
+      "image": "datasets\\fall_pose\\images\\val\\frame_20240912_101723_000010.jpg",
       "mode": "pseudo_infrared",
       "mean_absolute_error": 1.782732605934143,
       "root_mean_squared_error": 4.5365166664123535,

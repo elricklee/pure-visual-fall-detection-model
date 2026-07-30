@@ -72,4 +72,4 @@ artifacts/pytorch/yolov8n-pose.pt
 
 ## 与旧报告的关系
 
-`reports/member_a_day2_eval.md` 中的 20 epoch、旧权重路径及数据数量与当前工作区产物不一致。本文件以实际存在的 `args.yaml`、`results.csv` 和权重文件为准。
+`reports/archive/project_reports/member_a_day2_eval.md` 中的 20 epoch、旧权重路径及数据数量与当前工作区产物不一致。本文件以实际存在的 `args.yaml`、`results.csv` 和权重文件为准。

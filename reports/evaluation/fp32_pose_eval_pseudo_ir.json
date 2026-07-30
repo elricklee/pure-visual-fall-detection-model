@@ -1,6 +1,6 @@
 {
-  "model": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\artifacts\\onnx\\fall_pose_384_fp32.onnx",
-  "data": "C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\datasets\\fall_pose_ir_eval\\data.yaml",
+  "model": "artifacts\\onnx\\fall_pose_384_fp32.onnx",
+  "data": "datasets\\fall_pose_ir_eval\\data.yaml",
   "task": "pose",
   "image_size": 384,
   "batch": 1,

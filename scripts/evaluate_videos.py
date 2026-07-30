@@ -112,6 +112,142 @@ def _build_state_config(args: argparse.Namespace) -> TemporalStateConfig:
     )
 
 
+def _round_or_none(value: float | None, ndigits: int = 4) -> float | None:
+    return round(value, ndigits) if value is not None else None
+
+
+def _temporal_risk_score(row: dict) -> float:
+    """Video-level risk score for ROC-AUC ranking.
+
+    ``max_score`` is useful for debugging single-frame pose geometry, but it is
+    too sensitive to isolated ADL poses. This score keeps confirmed temporal
+    alerts high and damps videos where the state machine never confirms a fall.
+    """
+    max_score = float(row.get("max_score") or 0.0)
+    frames = max(1, int(row.get("frames") or 0))
+    person_frames = max(1, int(row.get("person_frames") or 0))
+    temporal_fall_frames = int(row.get("temporal_fall_frames") or 0)
+    first_alert_frame = row.get("first_alert_frame")
+
+    if temporal_fall_frames <= 0:
+        return round(max_score * 0.25, 3)
+
+    confirmed_ratio = temporal_fall_frames / person_frames
+    persistence_factor = 0.65 + 0.35 * min(1.0, confirmed_ratio / 0.05)
+
+    if first_alert_frame is None:
+        onset_factor = 0.4
+    else:
+        onset_ratio = max(0.0, min(1.0, float(first_alert_frame) / frames))
+        onset_factor = 0.4 + 0.6 * min(1.0, onset_ratio / 0.2)
+
+    return round(max_score * persistence_factor * onset_factor, 3)
+
+
+def _known_rows(rows: list[dict]) -> list[dict]:
+    return [
+        row
+        for row in rows
+        if isinstance(row.get("expected_fall"), bool)
+        and row.get("outcome") != "ERROR"
+    ]
+
+
+def _roc_auc(rows: list[dict], score_key: str) -> float | None:
+    known = _known_rows(rows)
+    positives = [
+        float(row[score_key])
+        for row in known
+        if row["expected_fall"] is True
+    ]
+    negatives = [
+        float(row[score_key])
+        for row in known
+        if row["expected_fall"] is False
+    ]
+    if not positives or not negatives:
+        return None
+
+    pair_score = 0.0
+    for pos_score in positives:
+        for neg_score in negatives:
+            if pos_score > neg_score:
+                pair_score += 1.0
+            elif pos_score == neg_score:
+                pair_score += 0.5
+    return round(pair_score / (len(positives) * len(negatives)), 4)
+
+
+def _classification_summary(rows: list[dict], score_key: str, threshold: float) -> dict:
+    known = _known_rows(rows)
+    tp = fp = tn = fn = 0
+    for row in known:
+        expected = bool(row["expected_fall"])
+        predicted = float(row[score_key]) >= threshold
+        if expected and predicted:
+            tp += 1
+        elif expected and not predicted:
+            fn += 1
+        elif not expected and predicted:
+            fp += 1
+        else:
+            tn += 1
+
+    total = tp + fp + tn + fn
+    precision = tp / (tp + fp) if tp + fp else None
+    recall = tp / (tp + fn) if tp + fn else None
+    specificity = tn / (tn + fp) if tn + fp else None
+    f1 = (
+        2 * precision * recall / (precision + recall)
+        if precision is not None and recall is not None and precision + recall > 0
+        else None
+    )
+    balanced_accuracy = (
+        (recall + specificity) / 2
+        if recall is not None and specificity is not None
+        else None
+    )
+
+    return {
+        "threshold": round(threshold, 4),
+        "TP": tp,
+        "FP": fp,
+        "TN": tn,
+        "FN": fn,
+        "accuracy": round((tp + tn) / total, 4) if total else None,
+        "precision": _round_or_none(precision),
+        "recall": _round_or_none(recall),
+        "specificity": _round_or_none(specificity),
+        "f1": _round_or_none(f1),
+        "balanced_accuracy": _round_or_none(balanced_accuracy),
+    }
+
+
+def _best_threshold(rows: list[dict], score_key: str) -> dict | None:
+    known = _known_rows(rows)
+    if not known:
+        return None
+
+    scores = sorted({float(row[score_key]) for row in known})
+    thresholds = [0.0]
+    thresholds.extend((left + right) / 2 for left, right in zip(scores, scores[1:]))
+    thresholds.append(1.0)
+
+    candidates = [
+        _classification_summary(rows, score_key, threshold)
+        for threshold in thresholds
+    ]
+    return max(
+        candidates,
+        key=lambda item: (
+            item["balanced_accuracy"] or -1.0,
+            item["f1"] or -1.0,
+            item["accuracy"] or -1.0,
+            item["threshold"],
+        ),
+    )
+
+
 # ---------------------------------------------------------------------------
 # Single-person evaluation
 # ---------------------------------------------------------------------------
@@ -428,7 +564,7 @@ def evaluate_video(
     else:
         outcome = "UNKNOWN"
 
-    return {
+    row = {
         "video": str(video_path),
         "expected_fall": expected,
         "predicted_fall": predicted,
@@ -440,6 +576,8 @@ def evaluate_video(
         "first_alert_frame": first_alert_frame,
         "max_score": round(max_score, 3),
     }
+    row["temporal_risk_score"] = _temporal_risk_score(row)
+    return row
 
 
 def main() -> None:
@@ -470,6 +608,10 @@ def main() -> None:
         if total_known
         else None
     )
+    summary["auc_score_key"] = "temporal_risk_score"
+    summary["auc"] = _roc_auc(rows, "temporal_risk_score")
+    summary["max_score_auc"] = _roc_auc(rows, "max_score")
+    summary["best_threshold"] = _best_threshold(rows, "temporal_risk_score")
 
     payload = {"summary": summary, "videos": rows}
     output_path = Path(args.output)
