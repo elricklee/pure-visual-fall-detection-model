@@ -32,36 +32,114 @@
 
 ## 快速运行
 
+所有命令均在项目根目录执行：
+
 ```powershell
-python -m venv .venv
+cd D:\huawei\pure-visual-fall-detection-model
+if (!(Test-Path .\.venv\Scripts\python.exe)) { python -m venv .venv }
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
 
-运行端到端告警系统：
+## 评委现场操作命令
+
+以下命令使用仓库内已有样例视频 `datasets\fall_pose\videos\raw\urfall_fall_01_cam0.mp4` 和版本化模型文件，适合现场快速演示。
+
+### 1. 检查环境
+
+```powershell
+python tools\compliance\check_environment.py `
+  --output reports\environment\runtime_environment.json
+```
+
+### 2. 运行单视频可视化推理
+
+```powershell
+python scripts\runtime\infer_video.py `
+  --source datasets\fall_pose\videos\raw\urfall_fall_01_cam0.mp4 `
+  --model artifacts\pytorch\fall_pose_384_best.pt `
+  --output runs\judge\infer_urfall_fall_01.mp4 `
+  --decision-mode state_machine `
+  --roi auto
+```
+
+输出：`runs\judge\infer_urfall_fall_01.mp4`，视频中包含人体框、骨架、跌倒分数和状态机结果。
+
+### 3. 运行端到端告警系统
 
 ```powershell
 python scripts\runtime\run_system.py `
-  --source path\to\demo.mp4 `
-  --model artifacts\pytorch\yolov8n-pose.pt `
-  --output-dir runs\system `
+  --source datasets\fall_pose\videos\raw\urfall_fall_01_cam0.mp4 `
+  --model artifacts\pytorch\fall_pose_384_best.pt `
+  --output-dir runs\judge\system `
+  --run-name urfall_fall_01 `
+  --decision-mode state_machine `
   --no-popup
 ```
 
-摄像头输入：
+输出：`runs\judge\system\urfall_fall_01\`，包含 `live.mp4`、`events.jsonl`、`frames.jsonl`、`run_summary.json`、`report.html`，以及告警截图和回放片段。
+
+### 4. 摄像头实时演示
 
 ```powershell
-python scripts\runtime\run_system.py --source 0 --model artifacts\pytorch\yolov8n-pose.pt --no-popup
+python scripts\runtime\run_system.py `
+  --source 0 `
+  --model artifacts\pytorch\fall_pose_384_best.pt `
+  --output-dir runs\judge\camera `
+  --no-popup
 ```
 
-输出目录会生成标注视频、事件流、帧级 trace、告警截图、回放片段、运行摘要和 HTML 报告。
+### 5. 批量评估样例视频
+
+```powershell
+python scripts\evaluation\evaluate_videos.py `
+  --source datasets\fall_pose\videos\raw `
+  --model artifacts\pytorch\fall_pose_384_best.pt `
+  --output reports\evaluation\judge_video_evaluation.json `
+  --csv-output reports\evaluation\judge_video_evaluation.csv `
+  --multi-person
+```
+
+输出：`reports\evaluation\judge_video_evaluation.json` 和 `reports\evaluation\judge_video_evaluation.csv`，包含 TP、FP、TN、FN、accuracy、AUC、最佳阈值、首个告警帧、告警帧数和最大分数。
+
+### 6. 查看模型部署证据
+
+如需现场重新测速，先安装 ONNX benchmark 依赖：
+
+```powershell
+python -m pip install -r requirements-benchmark.txt
+```
+
+```powershell
+python tools\model\inspect_onnx.py artifacts\onnx\fall_pose_384_fp32.onnx `
+  --output reports\model\judge_fp32_model_audit.json
+
+python tools\model\benchmark_onnx.py artifacts\onnx\fall_pose_384_fp32.onnx `
+  --input-npy samples\reference_input_384.npy `
+  --runs 30 `
+  --warmup 5 `
+  --output reports\model\judge_fp32_cpu_benchmark.json
+
+python tools\model\analyze_npu_feasibility.py reports\model\judge_fp32_model_audit.json `
+  --benchmark reports\model\judge_fp32_cpu_benchmark.json `
+  --output reports\model\judge_fp32_npu_feasibility.json
+```
+
+### 7. 运行自动化测试
+
+```powershell
+python -m pip install pytest
+python -m pytest
+```
+
+当前测试集覆盖核心规则、状态机、多人跟踪、可视化、ONNX 量化工具、报告生成和评估指标。
 
 ## 批量评估
 
 ```powershell
 python scripts\evaluation\evaluate_videos.py `
   --source datasets\fall_pose\videos\raw `
-  --model artifacts\pytorch\yolov8n-pose.pt `
+  --model artifacts\pytorch\fall_pose_384_best.pt `
   --output reports\evaluation\video_evaluation.json `
   --csv-output reports\evaluation\video_evaluation.csv `
   --multi-person
