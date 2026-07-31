@@ -16,10 +16,10 @@ def load_module(name: str, relative_path: str):
     return module
 
 
-benchmark_onnx = load_module("benchmark_onnx", "tools/benchmark_onnx.py")
-check_compliance = load_module("check_compliance", "tools/check_compliance.py")
+benchmark_onnx = load_module("benchmark_onnx", "tools/model/benchmark_onnx.py")
+check_compliance = load_module("check_compliance", "tools/compliance/check_compliance.py")
 analyze_npu = load_module(
-    "analyze_npu_feasibility", "tools/analyze_npu_feasibility.py"
+    "analyze_npu_feasibility", "tools/model/analyze_npu_feasibility.py"
 )
 
 

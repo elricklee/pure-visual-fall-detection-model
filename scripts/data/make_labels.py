@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import shutil
 from pathlib import Path
 
 import cv2
@@ -12,7 +11,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--image-dir", required=True)
     parser.add_argument("--label-dir", required=True)
-    parser.add_argument("--model", default="yolov8n-pose.pt")
+    parser.add_argument("--model", default="artifacts/pytorch/yolov8n-pose.pt")
     parser.add_argument("--conf", type=float, default=0.35)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--class-id", type=int, default=0)

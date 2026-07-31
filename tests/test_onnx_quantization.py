@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from fall_detection.onnx_preprocess import letterbox, prepare_onnx_input
-from scripts.quantize_onnx import build_calibration_entries, evenly_select
+from scripts.model.quantize_onnx import build_calibration_entries, evenly_select
 
 
 class OnnxPreprocessTests(unittest.TestCase):

@@ -35,6 +35,7 @@ runs/
 !artifacts/onnx/fall_pose_384_fp32.onnx
 !artifacts/onnx/fall_pose_384_int8_qdq.onnx
 !artifacts/pytorch/
+!artifacts/pytorch/fall_pose_384_best.pt
 !artifacts/pytorch/yolov8n-pose.pt
 # IDE
 .vscode/

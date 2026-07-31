@@ -9,10 +9,10 @@ from pathlib import Path
 import cv2
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from fall_detection.onnx_preprocess import prepare_onnx_input
-from scripts.quantize_onnx import IMAGE_EXTENSIONS, evenly_select
+from scripts.model.quantize_onnx import IMAGE_EXTENSIONS, evenly_select
 
 
 def parse_args() -> argparse.Namespace:

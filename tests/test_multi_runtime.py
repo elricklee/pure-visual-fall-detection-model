@@ -1,8 +1,8 @@
 from types import SimpleNamespace
 import unittest
 
-from scripts.evaluate_videos import _summarize_multi_frame_metrics
-from scripts.run_system import _should_emit_fall_event
+from scripts.evaluation.evaluate_videos import _summarize_multi_frame_metrics
+from scripts.runtime.run_system import _should_emit_fall_event
 
 
 def _person(score: float, raw_fall: bool, confirmed_fall: bool):

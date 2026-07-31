@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.generate_run_report import generate_report
+from scripts.runtime.generate_run_report import generate_report
 
 
 class GenerateRunReportTest(unittest.TestCase):

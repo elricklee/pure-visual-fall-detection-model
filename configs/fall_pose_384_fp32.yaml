@@ -5,7 +5,7 @@ model_class:
   0: person
 
 artifacts:
-  pytorch: artifacts/pytorch/7.26_Train/best.pt
+  pytorch: artifacts/pytorch/fall_pose_384_best.pt
   onnx: artifacts/onnx/fall_pose_384_fp32.onnx
   pytorch_sha256: 4F77F9265D213C7018B7EA8FCBECA343577F3DD0835CE9F81AD5E8F58E778B18
   onnx_sha256: 8C8BA9001CD7D56BD017EA85FC11E7D19BEBCF2DFD84C3FC5DCDF49462A38E3D

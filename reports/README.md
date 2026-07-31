@@ -9,9 +9,9 @@
 - `environment/`：当前可复现运行环境。
 - `compliance/`：赛题硬指标输入与检查结果。
 - `summaries/`：供团队阅读和提交材料引用的人工总结。
+- `documents/`：当前综合 Word 报告。
 - `archive/day2_video_eval/`：旧 Day2 视频评估结果。
 - `archive/project_reports/`：甲侧历史报告和训练状态追溯。
-- 根目录：两份当前综合 Word 报告。
 
 ## 当前核心模型证据
 

@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.evaluate_videos import _roc_auc, _temporal_risk_score, _best_threshold
+from scripts.evaluation.evaluate_videos import _roc_auc, _temporal_risk_score, _best_threshold
 
 
 def _row(name: str, expected: bool, max_score: float, frames: int, person_frames: int,
