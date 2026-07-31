@@ -1,0 +1,318 @@
+{"kind":"deck","id":"pr/2yyohw","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"subtitle","type":"subtitle","textPreview":"Click to edit Master subtitle style"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"Title and Content","type":"obj","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"content placeholder 2","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"Section Header","type":"secHead","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout4.xml","name":"Two Content","type":"twoObj","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"content placeholder 2","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"content placeholder 3","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout5.xml","name":"Comparison","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"content placeholder 3","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"content placeholder 5","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout6.xml","name":"Title Only","type":"titleOnly","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout7.xml","name":"Blank","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout8.xml","name":"Content with Caption","type":"objTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"content placeholder 2","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout9.xml","name":"Picture with Caption","type":"picTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"picture","type":"picture"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout10.xml","name":"Title and Vertical Text","type":"vertTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout11.xml","name":"Vertical Title and Text","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title","textPreview":"Click to edit Master title style"},{"name":"body","type":"body","textPreview":"Click to edit Master text styles | Second level | Third level | Fourth level | Fifth level"},{"name":"dateTime","type":"dateTime","textPreview":"1/27/13"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"纯视觉跌倒检测","textShapes":7}
+{"kind":"shape","id":"sh/547294r6","slide":1,"name":"Rectangle 1","bbox":[0,0,1279.97,720]}
+{"kind":"shape","id":"sh/k3yl0zql","slide":1,"name":"Rectangle 2","bbox":[0,0,21.12,720]}
+{"kind":"textbox","id":"sh/7qp4be9c","slide":1,"name":"TextBox 3","text":"纯视觉跌倒检测","textPreview":"纯视觉跌倒检测","textChars":7,"textLines":1,"bbox":[62,68,570,84.48]}
+{"kind":"textbox","id":"sh/65g3298r","slide":1,"name":"TextBox 4","text":"面向低算力端侧的\n可解释多人告警闭环","textPreview":"面向低算力端侧的 | 可解释多人告警闭环","textChars":18,"textLines":2,"bbox":[62,154,550,112]}
+{"kind":"textbox","id":"sh/ts7md4r2","slide":1,"name":"TextBox 5","text":"YOLO Pose + 姿态几何评分 + 时序状态机\n支持多人独立跟踪与事件去重\n输出截图、视频与结构化告警证据","textPreview":"YOLO Pose + 姿态几何评分 + 时序状态机 | 支持多人独立跟踪与事件去重 | 输出截图、视频与结构化告警证据","textChars":56,"textLines":3,"bbox":[67,295,548,112]}
+{"kind":"shape","id":"sh/sryl4zqx","slide":1,"name":"Rounded Rectangle 6","bbox":[681.6,100.8,518.4,364.8]}
+{"kind":"textbox","id":"sh/utg3698n","slide":1,"name":"TextBox 8","text":"可见光姿态检测示例｜项目实测输出","textPreview":"可见光姿态检测示例｜项目实测输出","textChars":16,"textLines":1,"bbox":[693.12,438,495.36,28.32]}
+{"kind":"shape","id":"sh/wn6dc7eh","slide":1,"name":"Rounded Rectangle 9","bbox":[681.6,489.6,518.4,96]}
+{"kind":"textbox","id":"sh/hofulsf2","slide":1,"name":"TextBox 10","text":"校企协同数字技术大赛","textPreview":"校企协同数字技术大赛","textChars":10,"textLines":1,"bbox":[702.72,512.64,476.16,41.28]}
+{"kind":"textbox","id":"sh/ul4vaxgb","slide":1,"name":"TextBox 11","text":"华为专项赛道 · 初赛项目汇报","textPreview":"华为专项赛道 · 初赛项目汇报","textChars":15,"textLines":1,"bbox":[702.72,552,476.16,32.64]}
+{"kind":"textbox","id":"sh/vmdcj2xw","slide":1,"name":"TextBox 12","text":"纯视觉｜可解释｜轻量化｜事件证据闭环","textPreview":"纯视觉｜可解释｜轻量化｜事件证据闭环","textChars":18,"textLines":1,"bbox":[43.2,681,1036.8,25.44]}
+{"kind":"image","id":"im/bmxw3ido","slide":1,"name":"Picture 7","bbox":[681.6,137.4,518.4,291.6]}
+{"kind":"image","id":"im/alovadw3","slide":1,"name":"","alt":"可见光人体姿态检测结果","bbox":[681.6,137.4,518.4,291.6]}
+{"kind":"notes","id":"nt/y90nupkv","slide":1,"text":"开场：本项目不是单点模型，而是从视频输入到事件告警与证据输出的完整MVP。\n- C:/Users/32435/Downloads/校企协同数字技术大赛方案--华为专项赛道.docx\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\samples\\reference_output_fp32.jpg\n\n[Sources]\n- C:/Users/32435/Downloads/校企协同数字技术大赛方案--华为专项赛道.docx\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\samples\\reference_output_fp32.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"02","textShapes":15}
+{"kind":"textbox","id":"sh/9072xkry","slide":2,"name":"TextBox 1","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/ozy1ofad","slide":2,"name":"TextBox 2","text":"端侧视觉同时回应安全、隐私与成本","textPreview":"端侧视觉同时回应安全、隐私与成本","textChars":16,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/b29kza94","slide":2,"name":"TextBox 3","text":"赛题约束不是附加条件，而是方案设计的起点","textPreview":"赛题约束不是附加条件，而是方案设计的起点","textChars":20,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/a10jqpsj","slide":2,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/x4r21kru","slide":2,"name":"Rounded Rectangle 5","bbox":[67.2,129.6,220.8,122.88]}
+{"kind":"textbox","id":"sh/w3i1sfa9","slide":2,"name":"TextBox 6","text":"纯视觉","textPreview":"纯视觉","textChars":3,"textLines":1,"bbox":[82.56,143.04,190.08,61.44]}
+{"kind":"textbox","id":"sh/r65knqtk","slide":2,"name":"TextBox 7","text":"无需穿戴设备","textPreview":"无需穿戴设备","textChars":6,"textLines":1,"bbox":[82.56,194.88,190.08,32.64]}
+{"kind":"shape","id":"sh/q5wjelsz","slide":2,"name":"Rounded Rectangle 8","bbox":[321.6,129.6,220.8,122.88]}
+{"kind":"textbox","id":"sh/ove9o7yd","slide":2,"name":"TextBox 9","text":"端侧处理","textPreview":"端侧处理","textChars":4,"textLines":1,"bbox":[336.96,143.04,190.08,61.44]}
+{"kind":"textbox","id":"sh/9wnqhczy","slide":2,"name":"TextBox 10","text":"降低视频外传","textPreview":"降低视频外传","textChars":6,"textLines":1,"bbox":[336.96,194.88,190.08,32.64]}
+{"kind":"shape","id":"sh/mtwrmxg7","slide":2,"name":"Rounded Rectangle 11","bbox":[576,129.6,220.8,122.88]}
+{"kind":"textbox","id":"sh/nu58f2hs","slide":2,"name":"TextBox 12","text":"实时告警","textPreview":"实时告警","textChars":4,"textLines":1,"bbox":[591.36,143.04,190.08,61.44]}
+{"kind":"textbox","id":"sh/wjy9sry9","slide":2,"name":"TextBox 13","text":"事件级确认","textPreview":"事件级确认","textChars":5,"textLines":1,"bbox":[591.36,194.88,190.08,32.64]}
+{"kind":"shape","id":"sh/xk7qlczu","slide":2,"name":"Rounded Rectangle 14","bbox":[830.4,129.6,220.8,122.88]}
+{"kind":"textbox","id":"sh/ahwrqhgj","slide":2,"name":"TextBox 15","text":"可追溯","textPreview":"可追溯","textChars":3,"textLines":1,"bbox":[845.76,143.04,190.08,61.44]}
+{"kind":"textbox","id":"sh/bip8jmho","slide":2,"name":"TextBox 16","text":"截图·视频·JSON","textPreview":"截图·视频·JSON","textChars":10,"textLines":1,"bbox":[845.76,194.88,190.08,32.64]}
+{"kind":"textbox","id":"sh/cnupgny5","slide":2,"name":"TextBox 17","text":"• 面向居家、养老院与病房等连续监护场景\n• 1080P摄像头输入，算法内部缩放至384×384\n• 端侧目标：延迟≤100ms，NPU存储≤20MB","textPreview":"• 面向居家、养老院与病房等连续监护场景 | • 1080P摄像头输入，算法内部缩放至384×384 | • 端侧目标：延迟≤100ms，NPU存储≤20MB","textChars":75,"textLines":3,"bbox":[81.6,305,489.6,205]}
+{"kind":"shape","id":"sh/do3q9szq","slide":2,"name":"Rounded Rectangle 18","bbox":[633.6,288,547.2,240]}
+{"kind":"textbox","id":"sh/t8byxkn2","slide":2,"name":"TextBox 19","text":"赛题硬指标","textPreview":"赛题硬指标","textChars":5,"textLines":1,"bbox":[654.72,311.04,504.96,45.6]}
+{"kind":"textbox","id":"sh/s72xofmh","slide":2,"name":"TextBox 20","text":"参数量 ≤ 20M\nFP32权重 ≤ 80MB\n纯视觉｜可见光 + 红外图像\n支持端侧NPU部署","textPreview":"参数量 ≤ 20M | FP32权重 ≤ 80MB | 纯视觉｜可见光 + 红外图像 | 支持端侧NPU部署","textChars":48,"textLines":4,"bbox":[654.72,352,504.96,150]}
+{"kind":"textbox","id":"sh/76twva5c","slide":2,"name":"TextBox 21","text":"赛题要求：纯视觉、端侧部署、1080P输入、≤100ms端侧耗时、≤20MB NPU存储","textPreview":"赛题要求：纯视觉、端侧部署、1080P输入、≤100ms端侧耗时、≤20MB NPU存储","textChars":44,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"notes","id":"nt/hwbqtkby","slide":2,"text":"强调：本项目围绕赛题硬指标反向设计模型、输入尺寸、量化和证据输出。\n- C:/Users/32435/Downloads/校企协同数字技术大赛方案--华为专项赛道.docx\n\n[Sources]\n- C:/Users/32435/Downloads/校企协同数字技术大赛方案--华为专项赛道.docx\n[/Sources]"}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"03","textShapes":17}
+{"kind":"textbox","id":"sh/cza94vmx","slide":3,"name":"TextBox 1","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/d0jax03i","slide":3,"name":"TextBox 2","text":"一条链路完成“看见—判断—确认—留证”","textPreview":"一条链路完成“看见—判断—确认—留证”","textChars":19,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/298ryl4v","slide":3,"name":"TextBox 3","text":"模型负责感知，规则与时序负责可解释决策","textPreview":"模型负责感知，规则与时序负责可解释决策","textChars":19,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/3ah8rqlg","slide":3,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/obq90bml","slide":3,"name":"Rounded Rectangle 5","bbox":[72,139.2,174.4,86.4]}
+{"kind":"textbox","id":"sh/pcjqtg36","slide":3,"name":"TextBox 6","text":"1080P视频","textPreview":"1080P视频","textChars":7,"textLines":1,"bbox":[79.68,156.48,159.04,57.6]}
+{"kind":"textbox","id":"sh/m5cra54z","slide":3,"name":"TextBox 7","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[248.32,166.08,13.44,44.16]}
+{"kind":"shape","id":"sh/n6ls3alk","slide":3,"name":"Rounded Rectangle 8","bbox":[263.68,139.2,174.4,86.4]}
+{"kind":"textbox","id":"sh/n2l4fq98","slide":3,"name":"TextBox 9","text":"YOLO Pose","textPreview":"YOLO Pose","textChars":9,"textLines":1,"bbox":[271.36,156.48,159.04,57.6]}
+{"kind":"textbox","id":"sh/m1c3mlsn","slide":3,"name":"TextBox 10","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[440,166.08,13.44,44.16]}
+{"kind":"shape","id":"sh/943mhgre","slide":3,"name":"Rounded Rectangle 11","bbox":[455.36,139.2,174.4,86.4]}
+{"kind":"textbox","id":"sh/83ulovat","slide":3,"name":"TextBox 12","text":"人体关键点","textPreview":"人体关键点","textChars":5,"textLines":1,"bbox":[463.04,156.48,159.04,57.6]}
+{"kind":"textbox","id":"sh/v6l4jq94","slide":3,"name":"TextBox 13","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[631.68,166.08,13.44,44.16]}
+{"kind":"shape","id":"sh/a5c3ql8z","slide":3,"name":"Rounded Rectangle 14","bbox":[647.04,139.2,174.4,86.4]}
+{"kind":"textbox","id":"sh/x8nml0ra","slide":3,"name":"TextBox 15","text":"几何风险分","textPreview":"几何风险分","textChars":5,"textLines":1,"bbox":[654.72,156.48,159.04,57.6]}
+{"kind":"textbox","id":"sh/w7ulsvqp","slide":3,"name":"TextBox 16","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[823.36,166.08,13.44,44.16]}
+{"kind":"shape","id":"sh/ja54na9g","slide":3,"name":"Rounded Rectangle 17","bbox":[838.72,139.2,174.4,86.4]}
+{"kind":"textbox","id":"sh/i9w3u58v","slide":3,"name":"TextBox 18","text":"时序状态机","textPreview":"时序状态机","textChars":5,"textLines":1,"bbox":[846.4,156.48,159.04,57.6]}
+{"kind":"textbox","id":"sh/e10f2twf","slide":3,"name":"TextBox 19","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[1015.04,166.08,13.44,44.16]}
+{"kind":"shape","id":"sh/f29gbyx0","slide":3,"name":"Rounded Rectangle 20","bbox":[1030.4,139.2,174.4,86.4]}
+{"kind":"textbox","id":"sh/03ix43e5","slide":3,"name":"TextBox 21","text":"告警证据","textPreview":"告警证据","textChars":4,"textLines":1,"bbox":[1038.08,156.48,159.04,57.6]}
+{"kind":"textbox","id":"sh/14ryd8fq","slide":3,"name":"TextBox 22","text":"• 轻量姿态模型输出人体框与17个关键点\n• 姿态几何特征形成可解释风险分\n• 连续帧状态机确认事件，避免单帧触发","textPreview":"• 轻量姿态模型输出人体框与17个关键点 | • 姿态几何特征形成可解释风险分 | • 连续帧状态机确认事件，避免单帧触发","textChars":57,"textLines":3,"bbox":[81.6,282,499.2,220]}
+{"kind":"shape","id":"sh/6d0fytg3","slide":3,"name":"Rounded Rectangle 23","bbox":[628.8,235.2,528,316.8]}
+{"kind":"textbox","id":"sh/sfix03y9","slide":3,"name":"TextBox 25","text":"验证集姿态预测样例","textPreview":"验证集姿态预测样例","textChars":9,"textLines":1,"bbox":[640.32,558,504.96,28.32]}
+{"kind":"textbox","id":"sh/tgry9ofu","slide":3,"name":"TextBox 26","text":"技术实现：fall_detection/fall_logic.py｜fall_detection/state_machine.py｜scripts/run_system.py","textPreview":"技术实现：fall_detection/fall_logic.py｜fall_detection/state_machine.py｜scripts/run_system.py","textChars":87,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"image","id":"im/lwvexsju","slide":3,"name":"Picture 24","bbox":[628.8,245.1,528,297]}
+{"kind":"image","id":"im/kvmd4n29","slide":3,"name":"","alt":"验证集人体姿态预测样例","bbox":[628.8,245.1,528,297]}
+{"kind":"notes","id":"nt/ofy9wn61","slide":3,"text":"讲解顺序：先感知人体，再解释姿态，再用时间连续性确认，最后生成可复盘证据。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\fall_logic.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\state_machine.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\pictures-for-ppt\\08_val_batch0_pred.jpg\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\fall_logic.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\state_machine.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\pictures-for-ppt\\08_val_batch0_pred.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"04","textShapes":8}
+{"kind":"textbox","id":"sh/1cj2d8b6","slide":4,"name":"TextBox 1","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/0ba143al","slide":4,"name":"TextBox 2","text":"告警分数来自可解释的姿态证据","textPreview":"告警分数来自可解释的姿态证据","textChars":14,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/rm1k7yt4","slide":4,"name":"TextBox 3","text":"每次确认都能回答“为什么判定为跌倒”","textPreview":"每次确认都能回答“为什么判定为跌倒”","textChars":18,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/ql8jytsj","slide":4,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"textbox","id":"sh/doj29oba","slide":4,"name":"TextBox 5","text":"• 躯干角度：由竖直转向近水平\n• 框体宽高比：横向占比明显增大\n• 关键点高度：头、肩、髋整体下移\n• 置信度门控：关键点缺失时降低决策强度","textPreview":"• 躯干角度：由竖直转向近水平 | • 框体宽高比：横向占比明显增大 | • 关键点高度：头、肩、髋整体下移 | • 置信度门控：关键点缺失时降低决策强度","textChars":71,"textLines":4,"bbox":[81.6,140,451.2,245]}
+{"kind":"shape","id":"sh/sna103ap","slide":4,"name":"Rounded Rectangle 6","bbox":[585.6,120,547.2,374.4]}
+{"kind":"textbox","id":"sh/ih8ju9sn","slide":4,"name":"TextBox 8","text":"FALL_CONFIRMED：姿态、目标框与风险分同步留证","textPreview":"FALL_CONFIRMED：姿态、目标框与风险分同步留证","textChars":29,"textLines":1,"bbox":[597.12,467.52,524.16,32.64]}
+{"kind":"shape","id":"sh/kbm987y5","slide":4,"name":"Rounded Rectangle 9","bbox":[81.6,427.2,451.2,100.8]}
+{"kind":"textbox","id":"sh/5cva1cfq","slide":4,"name":"TextBox 10","text":"综合风险分","textPreview":"综合风险分","textChars":5,"textLines":1,"bbox":[102.72,444,408.96,42.72]}
+{"kind":"textbox","id":"sh/i94r6xgz","slide":4,"name":"TextBox 11","text":"多特征加权 → 阈值判定\n规则透明、阈值可调、结果便于复盘","textPreview":"多特征加权 → 阈值判定 | 规则透明、阈值可调、结果便于复盘","textChars":29,"textLines":2,"bbox":[102.72,475,408.96,52.8]}
+{"kind":"textbox","id":"sh/jadsz2xk","slide":4,"name":"TextBox 12","text":"证据：fall_detection/fall_logic.py｜事件截图来自多人INT8功能验证","textPreview":"证据：fall_detection/fall_logic.py｜事件截图来自多人INT8功能验证","textChars":48,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"image","id":"im/7ad43q1c","slide":4,"name":"Picture 7","bbox":[585.6,204.6,547.2,205.2]}
+{"kind":"image","id":"im/694nal0r","slide":4,"name":"","alt":"跌倒确认时的姿态、人体框和风险分","bbox":[585.6,204.6,547.2,205.2]}
+{"kind":"notes","id":"nt/jyx0ra1s","slide":4,"text":"核心创新：不依赖不可解释的单一分类结果，而是将关键点转化为可复核的姿态证据。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\fall_logic.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_full_frame\\events\\fall_event_p4_frame000049\\snapshot.jpg\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\fall_logic.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_full_frame\\events\\fall_event_p4_frame000049\\snapshot.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"05","textShapes":15}
+{"kind":"textbox","id":"sh/dgbulwnm","slide":5,"name":"TextBox 1","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/cf2tcr61","slide":5,"name":"TextBox 2","text":"连续状态确认抑制弯腰、蹲下等瞬时误报","textPreview":"连续状态确认抑制弯腰、蹲下等瞬时误报","textChars":18,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/z2tcnm5s","slide":5,"name":"TextBox 3","text":"判定逻辑从单帧分类升级为事件级状态机","textPreview":"判定逻辑从单帧分类升级为事件级状态机","textChars":18,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/yhkbe1o7","slide":5,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/l4bupwny","slide":5,"name":"Rounded Rectangle 5","bbox":[72,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/032tgr6d","slide":5,"name":"TextBox 6","text":"NORMAL","textPreview":"NORMAL","textChars":6,"textLines":1,"bbox":[79.68,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/n6dcr65o","slide":5,"name":"TextBox 7","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[277.06,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/m5kbi1oj","slide":5,"name":"Rounded Rectangle 8","bbox":[292.42,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/w32dkbuh","slide":5,"name":"TextBox 9","text":"SUSPECTED","textPreview":"SUSPECTED","textChars":9,"textLines":1,"bbox":[300.1,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/x4vedgvm","slide":5,"name":"TextBox 10","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[497.47,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/ahkvi1cb","slide":5,"name":"Rounded Rectangle 11","bbox":[512.83,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/v2twb6dw","slide":5,"name":"TextBox 12","text":"CONFIRMED","textPreview":"CONFIRMED","textChars":9,"textLines":1,"bbox":[520.51,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/k7mxovud","slide":5,"name":"TextBox 13","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[717.89,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/58vehgvy","slide":5,"name":"Rounded Rectangle 14","bbox":[733.25,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/i54fmlc7","slide":5,"name":"TextBox 15","text":"COOLDOWN","textPreview":"COOLDOWN","textChars":8,"textLines":1,"bbox":[740.93,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/j6dwfqds","slide":5,"name":"TextBox 16","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[938.3,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/sb6xsvu9","slide":5,"name":"Rounded Rectangle 17","bbox":[953.66,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/tcfel0vu","slide":5,"name":"TextBox 18","text":"RECOVERED","textPreview":"RECOVERED","textChars":9,"textLines":1,"bbox":[961.34,146.88,187.78,57.6]}
+{"kind":"shape","id":"sh/hgrmpwj2","slide":5,"name":"Rounded Rectangle 19","bbox":[81.6,249.6,499.2,316.8]}
+{"kind":"textbox","id":"sh/fe94nm1w","slide":5,"name":"TextBox 21","text":"正常/过渡姿态不直接告警","textPreview":"正常/过渡姿态不直接告警","textChars":12,"textLines":1,"bbox":[93.12,539.52,476.16,32.64]}
+{"kind":"shape","id":"sh/ud0ne10b","slide":5,"name":"Rounded Rectangle 22","bbox":[624,249.6,499.2,316.8]}
+{"kind":"textbox","id":"sh/4ji5kbid","slide":5,"name":"TextBox 24","text":"连续高风险后确认跌倒","textPreview":"连续高风险后确认跌倒","textChars":10,"textLines":1,"bbox":[635.52,539.52,476.16,32.64]}
+{"kind":"textbox","id":"sh/3i94r61s","slide":5,"name":"TextBox 25","text":"状态机：风险积累→确认→冷却→恢复；避免单帧异常直接触发告警","textPreview":"状态机：风险积累→确认→冷却→恢复；避免单帧异常直接触发告警","textChars":30,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"image","id":"im/9kbyhg7e","slide":5,"name":"Picture 20","bbox":[81.6,314.4,499.2,187.2]}
+{"kind":"image","id":"im/ulkfaloz","slide":5,"name":"Picture 23","bbox":[624,314.4,499.2,187.2]}
+{"kind":"image","id":"im/vmdgjqpk","slide":5,"name":"","alt":"正常或过渡状态的姿态与伪红外画面","bbox":[81.6,314.4,499.2,187.2]}
+{"kind":"image","id":"im/5gfi9krm","slide":5,"name":"","alt":"连续高风险后确认跌倒的画面","bbox":[624,314.4,499.2,187.2]}
+{"kind":"notes","id":"nt/i107q5of","slide":5,"text":"说明：状态机将单帧风险转化为事件过程，降低弯腰、蹲下或关键点抖动造成的瞬时误报。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\state_machine.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.ppt_build\\template-inspect\\assets\\ppt\\media\\image3.jpg\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.ppt_build\\template-inspect\\assets\\ppt\\media\\image2.jpg\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\fall_detection\\state_machine.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.ppt_build\\template-inspect\\assets\\ppt\\media\\image3.jpg\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.ppt_build\\template-inspect\\assets\\ppt\\media\\image2.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"06","textShapes":15}
+{"kind":"textbox","id":"sh/yhg7epsj","slide":6,"name":"TextBox 1","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/zi98nu94","slide":6,"name":"TextBox 2","text":"多人场景按 track_id 独立管理状态","textPreview":"多人场景按 track_id 独立管理状态","textChars":21,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/87ipkzal","slide":6,"name":"TextBox 3","text":"同一画面中，每个人拥有独立时序、冷却与证据链","textPreview":"同一画面中，每个人拥有独立时序、冷却与证据链","textChars":22,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/98rqt4r6","slide":6,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/ml07i9sv","slide":6,"name":"Rounded Rectangle 5","bbox":[72,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/7m98ru9g","slide":6,"name":"TextBox 6","text":"检测多人","textPreview":"检测多人","textChars":4,"textLines":1,"bbox":[79.68,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/oryp8fah","slide":6,"name":"TextBox 7","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[277.06,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/pc76hkr2","slide":6,"name":"Rounded Rectangle 8","bbox":[292.42,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/h4bupgn6","slide":6,"name":"TextBox 9","text":"分配ID","textPreview":"分配ID","textChars":4,"textLines":1,"bbox":[300.1,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/w32twb6l","slide":6,"name":"TextBox 10","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[497.47,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/v2tcn650","slide":6,"name":"Rounded Rectangle 11","bbox":[512.83,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/u1kbu1ov","slide":6,"name":"TextBox 12","text":"独立评分","textPreview":"独立评分","textChars":4,"textLines":1,"bbox":[520.51,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/5svutgni","slide":6,"name":"TextBox 13","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[717.89,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/47mt0b6x","slide":6,"name":"Rounded Rectangle 14","bbox":[733.25,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/j6dcr65c","slide":6,"name":"TextBox 15","text":"独立状态机","textPreview":"独立状态机","textChars":5,"textLines":1,"bbox":[740.93,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/i54bylor","slide":6,"name":"TextBox 16","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[938.3,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/twfux0ne","slide":6,"name":"Rounded Rectangle 17","bbox":[953.66,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/svmt4v6t","slide":6,"name":"TextBox 18","text":"独立留证","textPreview":"独立留证","textChars":4,"textLines":1,"bbox":[961.34,146.88,187.78,57.6]}
+{"kind":"shape","id":"sh/cbe5g3ih","slide":6,"name":"Rounded Rectangle 19","bbox":[81.6,249.6,499.2,316.8]}
+{"kind":"textbox","id":"sh/qpwnet0b","slide":6,"name":"TextBox 21","text":"人物 #4 触发独立跌倒事件","textPreview":"人物 #4 触发独立跌倒事件","textChars":14,"textLines":1,"bbox":[93.12,539.52,476.16,32.64]}
+{"kind":"shape","id":"sh/bq547yhw","slide":6,"name":"Rounded Rectangle 22","bbox":[624,249.6,499.2,316.8]}
+{"kind":"textbox","id":"sh/lg76d8zy","slide":6,"name":"TextBox 24","text":"人物 #6 触发独立跌倒事件","textPreview":"人物 #6 触发独立跌倒事件","textChars":14,"textLines":1,"bbox":[635.52,539.52,476.16,32.64]}
+{"kind":"textbox","id":"sh/ydgnit07","slide":6,"name":"TextBox 25","text":"合成多人视频功能验证｜画面最多跟踪2人｜用于验证状态隔离，不作为真实多人精度基准","textPreview":"合成多人视频功能验证｜画面最多跟踪2人｜用于验证状态隔离，不作为真实多人精度基准","textChars":40,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"image","id":"im/ofq9wfal","slide":6,"name":"Picture 20","bbox":[81.6,314.4,499.2,187.2]}
+{"kind":"image","id":"im/3id8b69w","slide":6,"name":"Picture 23","bbox":[624,314.4,499.2,187.2]}
+{"kind":"image","id":"im/2h47i1sb","slide":6,"name":"","alt":"合成多人场景中人物4的跌倒确认","bbox":[81.6,314.4,499.2,187.2]}
+{"kind":"image","id":"im/sn25c7q9","slide":6,"name":"","alt":"合成多人场景中人物6的跌倒确认","bbox":[624,314.4,499.2,187.2]}
+{"kind":"notes","id":"nt/x8f69ofe","slide":6,"text":"证据边界：输入视频为合成多人视频，用于验证多人跟踪、独立状态和事件留证功能。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\evaluation\\multi_person_functional_validation.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_roi\\events\\fall_event_p4_frame000027\\snapshot.jpg\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_roi\\events\\fall_event_p6_frame000055\\snapshot.jpg\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\evaluation\\multi_person_functional_validation.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_roi\\events\\fall_event_p4_frame000027\\snapshot.jpg\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_roi\\events\\fall_event_p6_frame000055\\snapshot.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/gnmp4jqx","slide":7,"title":"07","textShapes":15}
+{"kind":"textbox","id":"sh/cb2tkvap","slide":7,"name":"TextBox 1","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/dcbud0ra","slide":7,"name":"TextBox 2","text":"训练证据验证姿态主干已具备稳定输出","textPreview":"训练证据验证姿态主干已具备稳定输出","textChars":17,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/ydkbm5sv","slide":7,"name":"TextBox 3","text":"训练曲线说明模型收敛，视频评估验证完整链路","textPreview":"训练曲线说明模型收敛，视频评估验证完整链路","textChars":21,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/zedcfa9g","slide":7,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/kzmdova1","slide":7,"name":"Rounded Rectangle 5","bbox":[72,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/l0vuh0rm","slide":7,"name":"TextBox 6","text":"标注检查","textPreview":"标注检查","textChars":4,"textLines":1,"bbox":[79.68,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/eh0ba1sr","slide":7,"name":"TextBox 7","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[277.06,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/fi9c369c","slide":7,"name":"Rounded Rectangle 8","bbox":[292.42,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/baxkjqlk","slide":7,"name":"TextBox 9","text":"数据增强","textPreview":"数据增强","textChars":4,"textLines":1,"bbox":[300.1,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/a9ojq5kz","slide":7,"name":"TextBox 10","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[497.47,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/xcz2l03q","slide":7,"name":"Rounded Rectangle 11","bbox":[512.83,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/cbq1sv25","slide":7,"name":"TextBox 12","text":"姿态训练","textPreview":"姿态训练","textChars":4,"textLines":1,"bbox":[520.51,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/n6x0fqlo","slide":7,"name":"TextBox 13","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[717.89,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/25ojml43","slide":7,"name":"Rounded Rectangle 14","bbox":[733.25,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/p8fih03e","slide":7,"name":"TextBox 15","text":"验证评估","textPreview":"验证评估","textChars":4,"textLines":1,"bbox":[740.93,146.88,187.78,57.6]}
+{"kind":"textbox","id":"sh/o761ov2t","slide":7,"name":"TextBox 16","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[938.3,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/f2d0b6lc","slide":7,"name":"Rounded Rectangle 17","bbox":[953.66,129.6,203.14,86.4]}
+{"kind":"textbox","id":"sh/eh4jil4r","slide":7,"name":"TextBox 18","text":"导出ONNX","textPreview":"导出ONNX","textChars":6,"textLines":1,"bbox":[961.34,146.88,187.78,57.6]}
+{"kind":"shape","id":"sh/id4ju1oz","slide":7,"name":"Rounded Rectangle 19","bbox":[81.6,249.6,499.2,316.8]}
+{"kind":"textbox","id":"sh/4fm1wb6p","slide":7,"name":"TextBox 21","text":"50 epoch训练结果曲线","textPreview":"50 epoch训练结果曲线","textChars":14,"textLines":1,"bbox":[93.12,539.52,476.16,32.64]}
+{"kind":"shape","id":"sh/50v2pgna","slide":7,"name":"Rounded Rectangle 22","bbox":[624,249.6,499.2,316.8]}
+{"kind":"textbox","id":"sh/r2dkrq5g","slide":7,"name":"TextBox 24","text":"验证集姿态预测样例","textPreview":"验证集姿态预测样例","textChars":9,"textLines":1,"bbox":[635.52,539.52,476.16,32.64]}
+{"kind":"textbox","id":"sh/s3ml0v61","slide":7,"name":"TextBox 25","text":"训练记录：runs/train/fall_pose_v3/results.csv｜本地验证集仅11张，不能替代最终泛化评估","textPreview":"训练记录：runs/train/fall_pose_v3/results.csv｜本地验证集仅11张，不能替代最终泛化评估","textChars":61,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"image","id":"im/ix4nytoz","slide":7,"name":"Picture 20","bbox":[81.6,314.4,499.2,187.2]}
+{"kind":"image","id":"im/l4rmh4n6","slide":7,"name":"Picture 23","bbox":[624,314.4,499.2,187.2]}
+{"kind":"image","id":"im/k3i5oz61","slide":7,"name":"","alt":"50轮姿态模型训练结果曲线","bbox":[81.6,314.4,499.2,187.2]}
+{"kind":"image","id":"im/a9gji54j","slide":7,"name":"","alt":"验证集姿态预测结果","bbox":[624,314.4,499.2,187.2]}
+{"kind":"notes","id":"nt/gnmp4jqx","slide":7,"text":"数字口径：以results.csv的50个epoch记录为准，不采用素材说明文件中的未核实轮数。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\train\\fall_pose_v3\\results.csv\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\train\\fall_pose_v3\\results.png\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\train\\fall_pose_v3\\val_batch0_pred.jpg\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\train\\fall_pose_v3\\results.csv\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\train\\fall_pose_v3\\results.png\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\train\\fall_pose_v3\\val_batch0_pred.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/fu1gfa1s","slide":8,"title":"08","textShapes":23}
+{"kind":"textbox","id":"sh/18byd4zy","slide":8,"name":"TextBox 1","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/g72x4zyd","slide":8,"name":"TextBox 2","text":"8段小样本视频：链路可跑通，误报仍可定位","textPreview":"8段小样本视频：链路可跑通，误报仍可定位","textChars":20,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/ri9g7uhw","slide":8,"name":"TextBox 3","text":"该结果用于功能验证，不作为最终泛化准确率","textPreview":"该结果用于功能验证，不作为最终泛化准确率","textChars":20,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/6h0fypgb","slide":8,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/tkby9kzm","slide":8,"name":"Rounded Rectangle 5","bbox":[76.8,129.6,216,110.4]}
+{"kind":"textbox","id":"sh/sjix0zy1","slide":8,"name":"TextBox 6","text":"87.5%","textPreview":"87.5%","textChars":5,"textLines":1,"bbox":[92.16,143.04,185.28,61.44]}
+{"kind":"textbox","id":"sh/je9g3ahk","slide":8,"name":"TextBox 7","text":"视频级 Accuracy","textPreview":"视频级 Accuracy","textChars":12,"textLines":1,"bbox":[92.16,194.88,185.28,32.64]}
+{"kind":"shape","id":"sh/id0fu50z","slide":8,"name":"Rounded Rectangle 8","bbox":[321.6,129.6,216,110.4]}
+{"kind":"textbox","id":"sh/o7ydoret","slide":8,"name":"TextBox 9","text":"80%","textPreview":"80%","textChars":3,"textLines":1,"bbox":[336.96,143.04,185.28,61.44]}
+{"kind":"textbox","id":"sh/98rehwve","slide":8,"name":"TextBox 10","text":"Precision","textPreview":"Precision","textChars":9,"textLines":1,"bbox":[336.96,194.88,185.28,32.64]}
+{"kind":"shape","id":"sh/m5gvmhwn","slide":8,"name":"Rounded Rectangle 11","bbox":[566.4,129.6,216,110.4]}
+{"kind":"textbox","id":"sh/n6pwfmd8","slide":8,"name":"TextBox 12","text":"100%","textPreview":"100%","textChars":4,"textLines":1,"bbox":[581.76,143.04,185.28,61.44]}
+{"kind":"textbox","id":"sh/0jydkreh","slide":8,"name":"TextBox 13","text":"Recall","textPreview":"Recall","textChars":6,"textLines":1,"bbox":[581.76,194.88,185.28,32.64]}
+{"kind":"shape","id":"sh/1k7edwv2","slide":8,"name":"Rounded Rectangle 14","bbox":[811.2,129.6,216,110.4]}
+{"kind":"textbox","id":"sh/ehgvihwr","slide":8,"name":"TextBox 15","text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[826.56,143.04,185.28,52.8]}
+{"kind":"textbox","id":"sh/zipwbmdc","slide":8,"name":"TextBox 16","text":"标注视频数","textPreview":"标注视频数","textChars":5,"textLines":1,"bbox":[826.56,194.88,185.28,32.64]}
+{"kind":"textbox","id":"sh/kfixwbe1","slide":8,"name":"TextBox 17","text":"TP","textPreview":"TP","textChars":2,"textLines":1,"bbox":[91.2,292.8,172.8,32.64]}
+{"kind":"shape","id":"sh/lgbepgvm","slide":8,"name":"Rectangle 18","bbox":[268.8,297.6,283.2,17.28]}
+{"kind":"shape","id":"sh/tw7e9gnq","slide":8,"name":"Rectangle 19","bbox":[268.8,297.6,283.2,17.28]}
+{"kind":"textbox","id":"sh/svydgb65","slide":8,"name":"TextBox 20","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[561.6,290.88,67.2,36.48]}
+{"kind":"textbox","id":"sh/7u5w765k","slide":8,"name":"TextBox 21","text":"FP","textPreview":"FP","textChars":2,"textLines":1,"bbox":[91.2,332.4,172.8,32.64]}
+{"kind":"shape","id":"sh/6twve1oz","slide":8,"name":"Rectangle 22","bbox":[268.8,337.2,283.2,17.28]}
+{"kind":"shape","id":"sh/5sne5wne","slide":8,"name":"Rectangle 23","bbox":[268.8,337.2,70.8,17.28]}
+{"kind":"textbox","id":"sh/kredcr6t","slide":8,"name":"TextBox 24","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[561.6,330.48,67.2,36.48]}
+{"kind":"textbox","id":"sh/jq5w365o","slide":8,"name":"TextBox 25","text":"TN","textPreview":"TN","textChars":2,"textLines":1,"bbox":[91.2,372,172.8,32.64]}
+{"kind":"shape","id":"sh/i5wva1o3","slide":8,"name":"Rectangle 26","bbox":[268.8,376.8,283.2,17.28]}
+{"kind":"shape","id":"sh/x4ne1wni","slide":8,"name":"Rectangle 27","bbox":[268.8,376.8,212.4,17.28]}
+{"kind":"textbox","id":"sh/w3ed8r6x","slide":8,"name":"TextBox 28","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[561.6,370.08,67.2,36.48]}
+{"kind":"textbox","id":"sh/m9sb2x4v","slide":8,"name":"TextBox 29","text":"FN","textPreview":"FN","textChars":2,"textLines":1,"bbox":[91.2,411.6,172.8,32.64]}
+{"kind":"shape","id":"sh/na1sb2lg","slide":8,"name":"Rectangle 30","bbox":[268.8,416.4,283.2,17.28]}
+{"kind":"shape","id":"sh/8bat47ml","slide":8,"name":"Rectangle 31","bbox":[268.8,416.4,0,17.28]}
+{"kind":"textbox","id":"sh/9w3uds36","slide":8,"name":"TextBox 32","text":"0","textPreview":"0","textChars":1,"textLines":1,"bbox":[561.6,409.68,67.2,35.52]}
+{"kind":"textbox","id":"sh/y5sbed4j","slide":8,"name":"TextBox 33","text":"• 4段跌倒视频全部检出，Recall为100%\n• 1段非跌倒视频误报，主要改进方向是阈值与时序\n• 伪红外为灰度复制流程验证，不等同真实红外数据","textPreview":"• 4段跌倒视频全部检出，Recall为100% | • 1段非跌倒视频误报，主要改进方向是阈值与时序 | • 伪红外为灰度复制流程验证，不等同真实红外数据","textChars":74,"textLines":3,"bbox":[672,285,470.4,155]}
+{"kind":"shape","id":"sh/z61s7il4","slide":8,"name":"Rounded Rectangle 34","bbox":[672,458.88,470.4,96]}
+{"kind":"textbox","id":"sh/07atgnmp","slide":8,"name":"TextBox 35","text":"证据边界","textPreview":"证据边界","textChars":4,"textLines":1,"bbox":[693.12,468,428.16,41.28]}
+{"kind":"textbox","id":"sh/l8ja9s3a","slide":8,"name":"TextBox 36","text":"小样本｜视频级标签\n功能回归而非竞赛最终成绩","textPreview":"小样本｜视频级标签 | 功能回归而非竞赛最终成绩","textChars":22,"textLines":2,"bbox":[693.12,506,428.16,48.5]}
+{"kind":"textbox","id":"sh/q18bad4n","slide":8,"name":"TextBox 37","text":"证据：reports/evaluation/pseudo_ir_labeled_video_eval.json｜TP=4、FP=1、TN=3、FN=0","textPreview":"证据：reports/evaluation/pseudo_ir_labeled_video_eval.json｜TP=4、FP=1、TN=3、FN=0","textChars":75,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"notes","id":"nt/fu1gfa1s","slide":8,"text":"主动说明样本量与伪红外边界，避免把87.5%表述成总体准确率。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\evaluation\\pseudo_ir_labeled_video_eval.json\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\evaluation\\pseudo_ir_labeled_video_eval.json\n[/Sources]"}
+{"kind":"slide","id":"sl/udsvah03","slide":9,"title":"09","textShapes":22}
+{"kind":"textbox","id":"sh/1cfmhgne","slide":9,"name":"TextBox 1","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/0b65obm9","slide":9,"name":"TextBox 2","text":"量化将模型压缩72.32%，保留标准ONNX链路","textPreview":"量化将模型压缩72.32%，保留标准ONNX链路","textChars":24,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/nex4jq5k","slide":9,"name":"TextBox 3","text":"轻量化结果为端侧NPU迁移提供工程基础","textPreview":"轻量化结果为端侧NPU迁移提供工程基础","textChars":19,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/mdonql4z","slide":9,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/9gzml0nq","slide":9,"name":"Rounded Rectangle 5","bbox":[81.6,129.6,254.4,105.6]}
+{"kind":"textbox","id":"sh/ofq5svm5","slide":9,"name":"TextBox 6","text":"3.314M","textPreview":"3.314M","textChars":6,"textLines":1,"bbox":[96.96,143.04,223.68,52.8]}
+{"kind":"textbox","id":"sh/bih4na5w","slide":9,"name":"TextBox 7","text":"FP32参数量","textPreview":"FP32参数量","textChars":7,"textLines":1,"bbox":[96.96,194.88,223.68,32.64]}
+{"kind":"shape","id":"sh/ah8nu54b","slide":9,"name":"Rounded Rectangle 8","bbox":[369.6,129.6,254.4,105.6]}
+{"kind":"textbox","id":"sh/oza1gfyh","slide":9,"name":"TextBox 9","text":"13.34MB","textPreview":"13.34MB","textChars":7,"textLines":1,"bbox":[384.96,143.04,223.68,61.44]}
+{"kind":"textbox","id":"sh/p0ji9kf2","slide":9,"name":"TextBox 10","text":"FP32模型文件","textPreview":"FP32模型文件","textChars":8,"textLines":1,"bbox":[384.96,194.88,223.68,32.64]}
+{"kind":"shape","id":"sh/2xsjepgb","slide":9,"name":"Rounded Rectangle 11","bbox":[657.6,129.6,254.4,105.6]}
+{"kind":"textbox","id":"sh/3y107axw","slide":9,"name":"TextBox 12","text":"3.69MB","textPreview":"3.69MB","textChars":6,"textLines":1,"bbox":[672.96,143.04,223.68,71.04]}
+{"kind":"textbox","id":"sh/cnu1kzyd","slide":9,"name":"TextBox 13","text":"INT8模型文件","textPreview":"INT8模型文件","textChars":8,"textLines":1,"bbox":[672.96,194.88,223.68,32.64]}
+{"kind":"shape","id":"sh/do3id4fy","slide":9,"name":"Rounded Rectangle 14","bbox":[945.6,129.6,196.8,105.6]}
+{"kind":"textbox","id":"sh/qlcjipgn","slide":9,"name":"TextBox 15","text":"72.32%","textPreview":"72.32%","textChars":6,"textLines":1,"bbox":[960.96,143.04,166.08,61.44]}
+{"kind":"textbox","id":"sh/bml0buxs","slide":9,"name":"TextBox 16","text":"文件体积下降","textPreview":"文件体积下降","textChars":6,"textLines":1,"bbox":[960.96,194.88,166.08,32.64]}
+{"kind":"shape","id":"sh/0ru1ozyp","slide":9,"name":"Rounded Rectangle 17","bbox":[86.4,312,203.14,78.72]}
+{"kind":"textbox","id":"sh/lsn2h4fa","slide":9,"name":"TextBox 18","text":"FP32 ONNX","textPreview":"FP32 ONNX","textChars":9,"textLines":1,"bbox":[94.08,329.28,187.78,49.92]}
+{"kind":"textbox","id":"sh/98ji147e","slide":9,"name":"TextBox 19","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[291.46,338.88,13.44,44.16]}
+{"kind":"shape","id":"sh/87a18zqt","slide":9,"name":"Rounded Rectangle 20","bbox":[306.82,312,203.14,78.72]}
+{"kind":"textbox","id":"sh/76h0zup8","slide":9,"name":"TextBox 21","text":"64个校准样本","textPreview":"64个校准样本","textChars":7,"textLines":1,"bbox":[314.5,329.28,187.78,49.92]}
+{"kind":"textbox","id":"sh/ml8j6p8n","slide":9,"name":"TextBox 22","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[511.87,338.88,13.44,44.16]}
+{"kind":"shape","id":"sh/hcji5o7a","slide":9,"name":"Rounded Rectangle 23","bbox":[527.23,312,203.14,78.72]}
+{"kind":"textbox","id":"sh/wba1cjqp","slide":9,"name":"TextBox 24","text":"静态量化","textPreview":"静态量化","textChars":4,"textLines":1,"bbox":[534.91,329.28,187.78,49.92]}
+{"kind":"textbox","id":"sh/va103ep4","slide":9,"name":"TextBox 25","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[732.29,338.88,13.44,44.16]}
+{"kind":"shape","id":"sh/u9sja98z","slide":9,"name":"Rounded Rectangle 26","bbox":[747.65,312,203.14,78.72]}
+{"kind":"textbox","id":"sh/xgzitk76","slide":9,"name":"TextBox 27","text":"INT8 QDQ","textPreview":"INT8 QDQ","textChars":8,"textLines":1,"bbox":[755.33,329.28,187.78,49.92]}
+{"kind":"textbox","id":"sh/cf6h0fql","slide":9,"name":"TextBox 28","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[952.7,338.88,13.44,44.16]}
+{"kind":"shape","id":"sh/2l4faloj","slide":9,"name":"Rounded Rectangle 29","bbox":[968.06,312,203.14,78.72]}
+{"kind":"textbox","id":"sh/nmdg3q54","slide":9,"name":"TextBox 30","text":"模型审计","textPreview":"模型审计","textChars":4,"textLines":1,"bbox":[975.74,329.28,187.78,49.92]}
+{"kind":"textbox","id":"sh/onmxcv69","slide":9,"name":"TextBox 31","text":"固定输入 1×3×384×384｜标准ONNX算子｜伪红外用于量化校准兼容性，不等同真实传感器验证","textPreview":"固定输入 1×3×384×384｜标准ONNX算子｜伪红外用于量化校准兼容性，不等同真实传感器验证","textChars":49,"textLines":1,"bbox":[96,446,1027.2,72]}
+{"kind":"textbox","id":"sh/pofy50nu","slide":9,"name":"TextBox 32","text":"实测：FP32 13.3421MB｜INT8 3.6931MB｜QDQ静态量化｜ONNX Runtime可加载","textPreview":"实测：FP32 13.3421MB｜INT8 3.6931MB｜QDQ静态量化｜ONNX Runtime可加载","textChars":55,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"notes","id":"nt/udsvah03","slide":9,"text":"解释体积变化：权重由FP32量化到INT8，并采用QDQ图表达；模型文件降至原来的27.68%。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\fp32_model_audit.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\int8_model_audit.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\int8_quantization.json\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\fp32_model_audit.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\int8_model_audit.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\int8_quantization.json\n[/Sources]"}
+{"kind":"slide","id":"sl/m90b6t0r","slide":10,"title":"10","textShapes":15}
+{"kind":"textbox","id":"sh/xc3mho32","slide":10,"name":"TextBox 1","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/cbu58j2h","slide":10,"name":"TextBox 2","text":"实测项给证据，未上板项明确标为设计目标","textPreview":"实测项给证据，未上板项明确标为设计目标","textChars":19,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/zelojyl8","slide":10,"name":"TextBox 3","text":"当前合规状态：6项通过，2项待真实NPU验证","textPreview":"当前合规状态：6项通过，2项待真实NPU验证","textChars":22,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/ydcnatkn","slide":10,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/l036l83y","slide":10,"name":"Rounded Rectangle 5","bbox":[81.6,129.6,254.4,105.6]}
+{"kind":"textbox","id":"sh/kzu5c32t","slide":10,"name":"TextBox 6","text":"3.314M","textPreview":"3.314M","textChars":6,"textLines":1,"bbox":[96.96,143.04,223.68,52.8]}
+{"kind":"textbox","id":"sh/725onyl4","slide":10,"name":"TextBox 7","text":"参数量实测","textPreview":"参数量实测","textChars":5,"textLines":1,"bbox":[96.96,194.88,223.68,32.64]}
+{"kind":"shape","id":"sh/m1cnetkj","slide":10,"name":"Rounded Rectangle 8","bbox":[369.6,129.6,254.4,105.6]}
+{"kind":"textbox","id":"sh/s7yt4b21","slide":10,"name":"TextBox 9","text":"13.34MB","textPreview":"13.34MB","textChars":7,"textLines":1,"bbox":[384.96,143.04,223.68,71.04]}
+{"kind":"textbox","id":"sh/d87uxg3m","slide":10,"name":"TextBox 10","text":"FP32文件实测","textPreview":"FP32文件实测","textChars":8,"textLines":1,"bbox":[384.96,194.88,223.68,32.64]}
+{"kind":"shape","id":"sh/q5gb21kb","slide":10,"name":"Rounded Rectangle 11","bbox":[657.6,129.6,254.4,105.6]}
+{"kind":"textbox","id":"sh/r6pcv6lw","slide":10,"name":"TextBox 12","text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[672.96,143.04,223.68,52.8]}
+{"kind":"textbox","id":"sh/0bit8b2d","slide":10,"name":"TextBox 13","text":"合规通过项","textPreview":"合规通过项","textChars":5,"textLines":1,"bbox":[672.96,194.88,223.68,32.64]}
+{"kind":"shape","id":"sh/1cru1g3y","slide":10,"name":"Rounded Rectangle 14","bbox":[945.6,129.6,196.8,105.6]}
+{"kind":"textbox","id":"sh/e9gb61k7","slide":10,"name":"TextBox 15","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[960.96,143.04,166.08,52.8]}
+{"kind":"textbox","id":"sh/fapcz6ls","slide":10,"name":"TextBox 16","text":"设计目标项","textPreview":"设计目标项","textChars":5,"textLines":1,"bbox":[960.96,194.88,166.08,32.64]}
+{"kind":"textbox","id":"sh/ozitcv29","slide":10,"name":"TextBox 17","text":"实测证据\n• 参数量、FP32/INT8模型体积\n• ONNX结构、输入输出与CPU可执行\n• 可见光、伪红外流程与多人功能\n\n设计目标\n• NPU端到端耗时 ≤ 100ms\n• NPU运行存储占用 ≤ 20MB","textPreview":"实测证据 | • 参数量、FP32/INT8模型体积 | • ONNX结构、输入输出与CPU可执行 | • 可见光、伪红外流程与多人功能 |  | 设计目标 | • NPU端到端耗时 ≤ 100ms | • NPU运行存储占用 ≤ 20MB","textChars":106,"textLines":8,"bbox":[91.2,285,518.4,245]}
+{"kind":"shape","id":"sh/p0ru503u","slide":10,"name":"Rounded Rectangle 18","bbox":[667.2,288,465.6,206.4]}
+{"kind":"textbox","id":"sh/xwnupgvy","slide":10,"name":"TextBox 19","text":"PC参考性能","textPreview":"PC参考性能","textChars":6,"textLines":1,"bbox":[688.32,311.04,423.36,42.72]}
+{"kind":"textbox","id":"sh/wvetgbud","slide":10,"name":"TextBox 20","text":"INT8 ONNX Runtime · CPU\nMean 19.02ms｜P95 28.71ms\n约52.6 FPS\n\n不含视频解码、跟踪、时序判断与告警输出","textPreview":"INT8 ONNX Runtime · CPU | Mean 19.02ms｜P95 28.71ms | 约52.6 FPS |  | 不含视频解码、跟踪、时序判断与告警输出","textChars":79,"textLines":5,"bbox":[688.32,350,423.36,140]}
+{"kind":"textbox","id":"sh/bu5cnqd8","slide":10,"name":"TextBox 21","text":"状态：design_ready_unverified｜PC测速不能替代真实海思/瑞芯微NPU实测","textPreview":"状态：design_ready_unverified｜PC测速不能替代真实海思/瑞芯微NPU实测","textChars":48,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"notes","id":"nt/m90b6t0r","slide":10,"text":"答辩口径：19.02ms是PC CPU上的纯模型参考值；真实NPU延迟和内存必须在指定板卡上验证。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\int8_cpu_benchmark.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\compliance\\model_compliance_report.json\n- C:/Users/32435/Downloads/校企协同数字技术大赛方案--华为专项赛道.docx\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\model\\int8_cpu_benchmark.json\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\compliance\\model_compliance_report.json\n- C:/Users/32435/Downloads/校企协同数字技术大赛方案--华为专项赛道.docx\n[/Sources]"}
+{"kind":"slide","id":"sl/jetc3ut0","slide":11,"title":"11","textShapes":15}
+{"kind":"textbox","id":"sh/xcryxg7y","slide":11,"name":"TextBox 1","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/wbih4b6d","slide":11,"name":"TextBox 2","text":"告警不是一个标签，而是一条可追溯证据链","textPreview":"告警不是一个标签，而是一条可追溯证据链","textChars":19,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/n69grmpw","slide":11,"name":"TextBox 3","text":"从事件确认到复盘，系统输出完整事件级材料","textPreview":"从事件确认到复盘，系统输出完整事件级材料","textChars":20,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/250zy18b","slide":11,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"shape","id":"sh/98rytw72","slide":11,"name":"Rounded Rectangle 5","bbox":[76.8,129.6,203.14,81.6]}
+{"kind":"textbox","id":"sh/o7ih0r6h","slide":11,"name":"TextBox 6","text":"视频输入","textPreview":"视频输入","textChars":4,"textLines":1,"bbox":[84.48,146.88,187.78,52.8]}
+{"kind":"textbox","id":"sh/72t03qp0","slide":11,"name":"TextBox 7","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[281.86,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/61kzalof","slide":11,"name":"Rounded Rectangle 8","bbox":[297.22,129.6,203.14,81.6]}
+{"kind":"textbox","id":"sh/ofqtgnyt","slide":11,"name":"TextBox 9","text":"事件确认","textPreview":"事件确认","textChars":4,"textLines":1,"bbox":[304.9,146.88,187.78,52.8]}
+{"kind":"textbox","id":"sh/9gza9sze","slide":11,"name":"TextBox 10","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[502.27,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/mdobedg3","slide":11,"name":"Rounded Rectangle 11","bbox":[517.63,129.6,203.14,81.6]}
+{"kind":"textbox","id":"sh/nehs7iho","slide":11,"name":"TextBox 12","text":"保存截图","textPreview":"保存截图","textChars":4,"textLines":1,"bbox":[525.31,146.88,187.78,52.8]}
+{"kind":"textbox","id":"sh/0b6tc3yx","slide":11,"name":"TextBox 13","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[722.69,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/1cfa58zi","slide":11,"name":"Rounded Rectangle 14","bbox":[738.05,129.6,203.14,81.6]}
+{"kind":"textbox","id":"sh/epobatgr","slide":11,"name":"TextBox 15","text":"保存短视频","textPreview":"保存短视频","textChars":5,"textLines":1,"bbox":[745.73,146.88,187.78,52.8]}
+{"kind":"textbox","id":"sh/zaxs3yhc","slide":11,"name":"TextBox 16","text":"›","textPreview":"›","textChars":1,"textLines":1,"bbox":[943.1,156.48,13.44,44.16]}
+{"kind":"shape","id":"sh/cn6t83y1","slide":11,"name":"Rounded Rectangle 17","bbox":[958.46,129.6,203.14,81.6]}
+{"kind":"textbox","id":"sh/dofa18z6","slide":11,"name":"TextBox 18","text":"JSON / HTML","textPreview":"JSON / HTML","textChars":11,"textLines":1,"bbox":[966.14,146.88,187.78,52.8]}
+{"kind":"shape","id":"sh/tsnip0ny","slide":11,"name":"Rounded Rectangle 19","bbox":[81.6,244.8,508.8,316.8]}
+{"kind":"textbox","id":"sh/7650nq5s","slide":11,"name":"TextBox 21","text":"系统事件 snapshot","textPreview":"系统事件 snapshot","textChars":13,"textLines":1,"bbox":[93.12,534.72,485.76,32.64]}
+{"kind":"textbox","id":"sh/65wzelo7","slide":11,"name":"TextBox 22","text":"适用场景\n• 居家养老与独居老人监护\n• 养老机构与医院病房\n• 社区公共安全与弱网环境\n\n事件材料可定位、可复盘、可审计","textPreview":"适用场景 | • 居家养老与独居老人监护 | • 养老机构与医院病房 | • 社区公共安全与弱网环境 |  | 事件材料可定位、可复盘、可审计","textChars":61,"textLines":6,"bbox":[638.4,285,460.8,230]}
+{"kind":"textbox","id":"sh/l43ilgn2","slide":11,"name":"TextBox 23","text":"系统输出：snapshot.jpg｜event.mp4｜events.jsonl｜report.html","textPreview":"系统输出：snapshot.jpg｜event.mp4｜events.jsonl｜report.html","textChars":52,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"image","id":"im/7itszulo","slide":11,"name":"Picture 20","bbox":[81.6,307.8,508.8,190.8]}
+{"kind":"image","id":"im/sj29szm9","slide":11,"name":"","alt":"系统确认跌倒并保存事件截图","bbox":[81.6,307.8,508.8,190.8]}
+{"kind":"notes","id":"nt/jetc3ut0","slide":11,"text":"价值落点：系统不仅识别跌倒，还能留下供照护人员复核的完整事件材料。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\scripts\\run_system.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_roi\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.ppt_build\\template-inspect\\assets\\ppt\\media\\image4.jpg\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\scripts\\run_system.py\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\runs\\system\\multi_person_int8_roi\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\.ppt_build\\template-inspect\\assets\\ppt\\media\\image4.jpg\n[/Sources]"}
+{"kind":"slide","id":"sl/8f2psfyx","slide":12,"title":"12","textShapes":9}
+{"kind":"textbox","id":"sh/1gbm9s3a","slide":12,"name":"TextBox 1","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[43.2,26,67.2,35.52]}
+{"kind":"textbox","id":"sh/0f2lgnmp","slide":12,"name":"TextBox 2","text":"轻量、可解释、可追溯：完成端侧跌倒告警MVP","textPreview":"轻量、可解释、可追溯：完成端侧跌倒告警MVP","textChars":22,"textLines":1,"bbox":[100.8,20,1080,61.44]}
+{"kind":"textbox","id":"sh/ra943il8","slide":12,"name":"TextBox 3","text":"核心成果已形成，能力边界清晰、部署路径完整","textPreview":"核心成果已形成，能力边界清晰、部署路径完整","textChars":21,"textLines":1,"bbox":[102.72,72,1060,34.08]}
+{"kind":"shape","id":"sh/q903ad4n","slide":12,"name":"Rectangle 4","bbox":[43.2,108,1195.2,2.88]}
+{"kind":"textbox","id":"sh/dcbm583y","slide":12,"name":"TextBox 5","text":"• 3.314M参数姿态模型，完成FP32/INT8双版本\n• 多人独立跟踪 + 时序状态机降低单帧误报\n• 视频、截图、JSON、HTML构成事件证据闭环\n• 133项测试通过，关键指标均有可复核报告","textPreview":"• 3.314M参数姿态模型，完成FP32/INT8双版本 | • 多人独立跟踪 + 时序状态机降低单帧误报 | • 视频、截图、JSON、HTML构成事件证据闭环 | • 133项测试通过，关键指标均有可复核报告","textChars":101,"textLines":4,"bbox":[86.4,142,513.6,260]}
+{"kind":"shape","id":"sh/sb2lcnmd","slide":12,"name":"Rounded Rectangle 6","bbox":[662.4,129.6,451.2,268.8]}
+{"kind":"textbox","id":"sh/b6d4f2lc","slide":12,"name":"TextBox 7","text":"方案价值","textPreview":"方案价值","textChars":4,"textLines":1,"bbox":[686.4,163.2,403.2,48.48]}
+{"kind":"textbox","id":"sh/a543mx4r","slide":12,"name":"TextBox 8","text":"纯视觉降低使用门槛\n端侧处理兼顾隐私\n解释性规则便于复盘\n量化模型面向NPU迁移","textPreview":"纯视觉降低使用门槛 | 端侧处理兼顾隐私 | 解释性规则便于复盘 | 量化模型面向NPU迁移","textChars":40,"textLines":4,"bbox":[696,225,384,130]}
+{"kind":"shape","id":"sh/wvupgz6t","slide":12,"name":"Rounded Rectangle 9","bbox":[96,480,1017.6,86.4]}
+{"kind":"textbox","id":"sh/xw3q94ne","slide":12,"name":"TextBox 10","text":"当前结论","textPreview":"当前结论","textChars":4,"textLines":1,"bbox":[117.12,492,975.36,41.28]}
+{"kind":"textbox","id":"sh/atc7epon","slide":12,"name":"TextBox 11","text":"工程闭环已完成；真实NPU与真实红外结果将在指定目标板卡上进一步验证。","textPreview":"工程闭环已完成；真实NPU与真实红外结果将在指定目标板卡上进一步验证。","textChars":35,"textLines":1,"bbox":[117.12,527,975.36,34.08]}
+{"kind":"textbox","id":"sh/bulo7u58","slide":12,"name":"TextBox 12","text":"项目交付：模型｜代码｜量化｜多人检测｜告警闭环｜测试与合规报告","textPreview":"项目交付：模型｜代码｜量化｜多人检测｜告警闭环｜测试与合规报告","textChars":31,"textLines":1,"bbox":[43.2,681,1160,24.73]}
+{"kind":"notes","id":"nt/8f2psfyx","slide":12,"text":"收束：优势落在工程闭环、可解释性和端侧准备，不夸大未实测的NPU与真实红外结果。\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\纯视觉跌倒检测MVP项目当前情况详细报告_20260728.docx\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\compliance\\model_compliance_report.json\n- C:/Users/32435/Desktop/三人交叉协作分工方案（适配华为赛题·纯视觉跌倒检测MVP开发）.docx\n\n[Sources]\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\纯视觉跌倒检测MVP项目当前情况详细报告_20260728.docx\n- C:\\Users\\32435\\Desktop\\总文件夹\\华为赛道\\pure-visual-fall-detection-model\\reports\\compliance\\model_compliance_report.json\n- C:/Users/32435/Desktop/三人交叉协作分工方案（适配华为赛题·纯视觉跌倒检测MVP开发）.docx\n[/Sources]"}

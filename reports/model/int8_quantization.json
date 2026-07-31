@@ -1,11 +1,11 @@
 {
-  "source_model": "artifacts\\onnx\\fall_pose_384_fp32.onnx",
-  "output_model": "artifacts\\onnx\\fall_pose_384_int8_qdq.onnx",
-  "source_sha256": "8C8BA9001CD7D56BD017EA85FC11E7D19BEBCF2DFD84C3FC5DCDF49462A38E3D",
-  "output_sha256": "31636F87F7654E172EE9BC4A72B5F6B4CC3875D9285D439BCE95042146B8EE1C",
-  "source_file_bytes": 13342079,
-  "output_file_bytes": 3693093,
-  "compression_ratio": 0.2768,
+  "source_model": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\artifacts\\onnx\\7.30_Train\\best_384_fp32.onnx",
+  "output_model": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\artifacts\\onnx\\7.30_Train\\best_384_int8.onnx",
+  "source_sha256": "6E95EB941FEB78B1F4D2697091AA073DBA289DD8AFE6A9667FDF3F4864F5E325",
+  "output_sha256": "5BD1A7859A0E496873D26420ABBC18664389B84DA63F8016F965DC1955FF9C75",
+  "source_file_bytes": 13342073,
+  "output_file_bytes": 3631081,
+  "compression_ratio": 0.272153,
   "onnxruntime_version": "1.28.0",
   "quantization": {
     "method": "static",
@@ -13,10 +13,10 @@
     "calibration": "MinMax",
     "activation_type": "QUInt8",
     "weight_type": "QInt8",
-    "per_channel_weights": true,
+    "per_channel_weights": false,
     "source_opset": 12,
-    "output_opset": 13,
-    "opset_upgrade_reason": "Per-channel QDQ requires opset 13.",
+    "output_opset": 12,
+    "opset_upgrade_reason": null,
     "operator_types": [
       "Conv"
     ],
@@ -24,267 +24,267 @@
     "mixed_precision_note": null
   },
   "calibration": {
-    "directory": "datasets\\fall_pose\\images\\train",
+    "directory": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train",
     "samples": 64,
-    "visible_samples": 24,
-    "pseudo_infrared_samples": 40,
+    "visible_samples": 32,
+    "pseudo_infrared_samples": 32,
     "image_size": 384,
     "note": "Pseudo-infrared samples are grayscale-replicated visible images; they validate preprocessing compatibility but are not real sensor data.",
     "entries": [
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000005.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex1_000000.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000005.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex1_000000.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000025.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex1_000080.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000020.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex1_000080.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000050.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex2_000040.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000030.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex2_000040.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101427_000015.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex2_000120.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000045.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex2_000120.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101427_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex3_000080.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101331_000055.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex3_000080.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101520_000010.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex4_000030.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101427_000015.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex4_000030.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101520_000045.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex4_000120.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101427_000025.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\complex_complex4_000120.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101626_000015.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_20240912_101427_000010.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101427_000045.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_20240912_101427_000010.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101626_000040.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_20240912_101520_000040.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101427_000055.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_20240912_101520_000040.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101723_000025.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000209_000000.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101520_000025.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000209_000000.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101723_000045.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000209_000090.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101520_000040.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000209_000090.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000005.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000711_000000.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101626_000000.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000711_000000.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000030.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000711_000080.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101626_000015.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000711_000080.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000050.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000939_000040.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101626_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 000939_000040.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102048_000010.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 001122_000020.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101723_000005.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 001122_000020.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102048_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 001122_000110.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101723_000020.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\fall_2026-07-26 001122_000110.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000010.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 002126_000050.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101723_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 002126_000050.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000030.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 003539_000070.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101723_000045.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 003539_000070.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000055.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 003539_000150.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000000.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 003539_000150.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102330_000020.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 003736_000080.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000010.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 003736_000080.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102330_000040.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 004927_000060.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000025.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 004927_000060.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000010.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 005003_000020.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 005003_000020.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 005003_000110.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_101943_000050.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_2026-07-26 005003_000110.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000055.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non1_000060.jpg",
         "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102048_000000.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non1_000060.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102048_000015.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non1_000150.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non1_000150.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102048_000025.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non1_000230.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non1_000230.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102048_000040.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non2_000070.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non2_000070.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000010.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non2_000150.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non2_000150.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000020.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non2_000240.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non2_000240.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000035.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non3_000070.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non3_000070.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102146_000050.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non3_000160.jpg",
+        "mode": "visible"
+      },
+      {
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non3_000160.jpg",
         "mode": "pseudo_infrared"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102330_000005.jpg",
-        "mode": "pseudo_infrared"
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non3_000240.jpg",
+        "mode": "visible"
       },
       {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102330_000015.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102330_000030.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102330_000040.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000005.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000015.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000030.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000040.jpg",
-        "mode": "pseudo_infrared"
-      },
-      {
-        "path": "datasets\\fall_pose\\images\\train\\frame_20240912_102649_000055.jpg",
+        "path": "E:\\files\\visual-fall-detection\\pure-visual-fall-detection-model\\datasets\\fall_pose\\images\\train\\nonfall_non3_000240.jpg",
         "mode": "pseudo_infrared"
       }
     ]
