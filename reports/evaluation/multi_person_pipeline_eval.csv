@@ -1,0 +1,2 @@
+video,expected_fall,predicted_fall,outcome,frames,person_frames,raw_fall_frames,temporal_fall_frames,first_alert_frame,max_score
+runs\fixtures\multi_person_composite.mp4,,True,UNKNOWN,56,52,8,6,50,1.0

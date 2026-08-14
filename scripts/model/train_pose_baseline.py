@@ -7,7 +7,7 @@ from pathlib import Path
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Train YOLOv8n-pose fall baseline.")
     parser.add_argument("--data", default="configs/fall_pose.yaml", help="YOLO dataset yaml.")
-    parser.add_argument("--model", default="yolov8n-pose.pt", help="Base pose model.")
+    parser.add_argument("--model", default="artifacts/pytorch/yolov8n-pose.pt", help="Base pose model.")
     parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--batch", type=int, default=16)

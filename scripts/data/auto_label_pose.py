@@ -12,7 +12,7 @@ IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate YOLO pose pseudo-labels.")
     parser.add_argument("--root", default="datasets/fall_pose", help="Dataset root.")
-    parser.add_argument("--model", default="yolov8n-pose.pt")
+    parser.add_argument("--model", default="artifacts/pytorch/yolov8n-pose.pt")
     parser.add_argument("--conf", type=float, default=0.35)
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--device", default=None)

@@ -1,0 +1,122 @@
+{
+  "report_type": "multi_person_functional_validation",
+  "platform": {
+    "system": "Windows",
+    "release": "11",
+    "machine": "AMD64"
+  },
+  "limitations": [
+    "Input videos were composited to exercise the multi-person pipeline.",
+    "The results are functional evidence, not a real-scene multi-person accuracy benchmark.",
+    "Track-ID fragmentation remains visible and requires real-scene tuning.",
+    "Observed end-to-end FPS includes decode, tracking, visualization and artifact writing."
+  ],
+  "runs": [
+    {
+      "run_name": "multi_person_int8_full_frame",
+      "run_dir": "runs\\system\\multi_person_int8_full_frame",
+      "source": "runs\\fixtures\\multi_person_composite.mp4",
+      "model": "artifacts\\onnx\\fall_pose_384_int8_qdq.onnx",
+      "image_size": 384,
+      "confidence_threshold": 0.35,
+      "frames": 56,
+      "duration_sec": 37.314,
+      "observed_end_to_end_fps": 1.501,
+      "max_tracked_persons_in_frame": 2,
+      "frames_with_2plus_tracked_persons": 10,
+      "untracked_detections": 0,
+      "unique_track_ids": [
+        1,
+        3,
+        4
+      ],
+      "detections_per_track_id": {
+        "1": 13,
+        "3": 41,
+        "4": 8
+      },
+      "event_starts": 1,
+      "event_clips_saved": 1,
+      "event_trigger_policy": "confirmed_state_entry_with_per_track_cooldown",
+      "artifacts": {
+        "live_video": "runs\\system\\multi_person_int8_full_frame\\live.mp4",
+        "events_jsonl": "runs\\system\\multi_person_int8_full_frame\\events.jsonl",
+        "frames_jsonl": "runs\\system\\multi_person_int8_full_frame\\frames.jsonl",
+        "events_dir": "runs\\system\\multi_person_int8_full_frame\\events",
+        "report_html": "runs\\system\\multi_person_int8_full_frame\\report.html"
+      }
+    },
+    {
+      "run_name": "multi_person_int8_roi",
+      "run_dir": "runs\\system\\multi_person_int8_roi",
+      "source": "runs\\fixtures\\multi_person_roi_composite.mp4",
+      "model": "artifacts\\onnx\\fall_pose_384_int8_qdq.onnx",
+      "image_size": 384,
+      "confidence_threshold": 0.35,
+      "frames": 56,
+      "duration_sec": 30.825,
+      "observed_end_to_end_fps": 1.817,
+      "max_tracked_persons_in_frame": 2,
+      "frames_with_2plus_tracked_persons": 5,
+      "untracked_detections": 4,
+      "unique_track_ids": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "detections_per_track_id": {
+        "1": 2,
+        "4": 28,
+        "5": 5,
+        "6": 3
+      },
+      "event_starts": 2,
+      "event_clips_saved": 2,
+      "event_trigger_policy": "confirmed_state_entry_with_per_track_cooldown",
+      "artifacts": {
+        "live_video": "runs\\system\\multi_person_int8_roi\\live.mp4",
+        "events_jsonl": "runs\\system\\multi_person_int8_roi\\events.jsonl",
+        "frames_jsonl": "runs\\system\\multi_person_int8_roi\\frames.jsonl",
+        "events_dir": "runs\\system\\multi_person_int8_roi\\events",
+        "report_html": "runs\\system\\multi_person_int8_roi\\report.html"
+      }
+    },
+    {
+      "run_name": "multi_person_fp32_roi",
+      "run_dir": "runs\\system\\multi_person_fp32_roi",
+      "source": "runs\\fixtures\\multi_person_roi_composite.mp4",
+      "model": "artifacts\\pytorch\\7.26_Train\\best.pt",
+      "image_size": 640,
+      "confidence_threshold": 0.25,
+      "frames": 56,
+      "duration_sec": 7.68,
+      "observed_end_to_end_fps": 7.292,
+      "max_tracked_persons_in_frame": 2,
+      "frames_with_2plus_tracked_persons": 9,
+      "untracked_detections": 2,
+      "unique_track_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "detections_per_track_id": {
+        "1": 5,
+        "2": 42,
+        "3": 5,
+        "4": 4
+      },
+      "event_starts": 2,
+      "event_clips_saved": 2,
+      "event_trigger_policy": "confirmed_state_entry_with_per_track_cooldown",
+      "artifacts": {
+        "live_video": "runs\\system\\multi_person_fp32_roi\\live.mp4",
+        "events_jsonl": "runs\\system\\multi_person_fp32_roi\\events.jsonl",
+        "frames_jsonl": "runs\\system\\multi_person_fp32_roi\\frames.jsonl",
+        "events_dir": "runs\\system\\multi_person_fp32_roi\\events",
+        "report_html": "runs\\system\\multi_person_fp32_roi\\report.html"
+      }
+    }
+  ]
+}

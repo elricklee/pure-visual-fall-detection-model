@@ -1,0 +1,25 @@
+{
+  "summary": {
+    "TP": 0,
+    "FP": 0,
+    "TN": 0,
+    "FN": 0,
+    "UNKNOWN": 1,
+    "ERROR": 0,
+    "accuracy": null
+  },
+  "videos": [
+    {
+      "video": "runs\\fixtures\\multi_person_composite.mp4",
+      "expected_fall": null,
+      "predicted_fall": true,
+      "outcome": "UNKNOWN",
+      "frames": 56,
+      "person_frames": 52,
+      "raw_fall_frames": 8,
+      "temporal_fall_frames": 6,
+      "first_alert_frame": 50,
+      "max_score": 1.0
+    }
+  ]
+}
